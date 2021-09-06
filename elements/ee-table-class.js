@@ -8,7 +8,6 @@ export class EeTableMaterial extends Shared(EeTable) {
     return [
       super.styles,
       css`
- 
       `
     ]
   }
