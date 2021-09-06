@@ -7,7 +7,7 @@ module.exports = [
   // IIFE
   {
     // input: './tpe-babel.js',
-    input: './tpe.js',
+    input: './tpe-material.js',
     output: {
       file: 'distr/tpe.js', // IIFE ONE FILE
       format: 'iife'
@@ -18,7 +18,7 @@ module.exports = [
   },
 
   {
-    input: './tpe.js',
+    input: './tpe-material.js',
     output: {
       file: 'distr/tpe-esm.js', // IIFE ONE FILE
       format: 'esm'
