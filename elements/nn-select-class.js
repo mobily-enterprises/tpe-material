@@ -1,11 +1,10 @@
-import { NnTextarea } from 'tpe2/elements/nn-textarea-class'
+import { NnSelect } from 'tpe2/elements/nn-select-class'
 import { AddHasValueAttributeMixin } from '../mixins/AddHasValueAttributeMixin'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'
 
-export class NnTextareaMaterial extends Shared(AddHasValueAttributeMixin(NnTextarea)) {
-
+export class NnSelectMaterial extends Shared(AddHasValueAttributeMixin(NnSelect)) {
   // Style depends on CSS being able to find label as sibling of the #native element.
   // CSS can select next siblings, but not previous.  This guarantees label is rendered after #native in the shadowDOM
   static get properties () {
@@ -21,31 +20,37 @@ export class NnTextareaMaterial extends Shared(AddHasValueAttributeMixin(NnTexta
     this.validationMessagePosition = 'after'
   }
 
+  connectedCallback () {
+    super.connectedCallback()
+    this.onclick = () => { this.native.click() }
+  }
+
   static get styles () {
     return [
       super.styles,
       super.stylePatterns.inputField,
       super.stylePatterns.inputLabel,
-      super.stylePatterns.floatingLabel,
+      super.stylePatterns.fixedLabel,
       super.stylePatterns.errorMessage,
       super.stylePatterns.requiredLabelAsterisk,
       css`
-        :host {
-          --mat-form-element-height: 80px;
+        :host::after {
+          position: absolute;
+          content: '';
+          border: 4px solid transparent;
+          border-top-color: var(--mat-boundaries-color);
+          right: 20px;
+          bottom: 50%;
+          user-select: none;
+          pointer-events: none;
         }
-        /* Following material design guidelines, non-resizeable textarea */
-        textarea#native {
-          font-family: var(--mat-font-family);
-          padding-top: 12px;
-          min-height: 80px;
-          height: unset;
-          padding-top: 30px;
-          width: -webkit-fill-available;
-          resize: none;
+
+        #native {
+          width: 100%;
         }
       `
     ]
   }
 }
 
-tpeRegistry.register('nn-textarea', NnTextareaMaterial)
+tpeRegistry.register('nn-select', NnSelectMaterial)
