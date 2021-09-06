@@ -2,7 +2,7 @@
 import { NnInputFile } from 'tpe2/elements/nn-input-file-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
-import { css } from 'lit'
+import { css, html } from 'lit'
 
 export class NnInputFileMaterial extends Shared(NnInputFile) {
   static get styles () {
@@ -43,8 +43,8 @@ export class NnInputFileMaterial extends Shared(NnInputFile) {
     this.buttonLabel = 'Choose File'
   }
 
-  themeRender () {
-    return this.lit.html`
+  render () {
+    return html`
       <nn-button @click=${this._chooseFile}>${this.buttonLabel}</nn-button>
       <input type="file" id="native" @change="${this.fileNameChanged}" ?hidden=${this.hideNative} title=${this.title} >
       ${this.ifValidationMessageAfter}
