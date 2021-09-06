@@ -4,7 +4,6 @@ import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'
 
 export class EnInputRangeMaterial extends Shared(EnInputRange) {
-
   // Style depends on CSS being able to find label as sibling of the #native element.
   // CSS can select next siblings, but not previous.  This guarantees label is rendered after #native in the shadowDOM
   static get properties () {
