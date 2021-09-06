@@ -1,0 +1,58 @@
+{
+  "name": "tpe-material",
+  "version": "1.0.0",
+  "description": "The Platform Elements - Material Theme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demo": "es6-dev-server ",
+    "build": "rm -rf distr/* distr/**/*;rollup -c",
+    "docs": "cd docs-src;./makeDocs.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mobily-enterprises/nn.git"
+  },
+  "keywords": [
+    "lit-html",
+    "web-components",
+    "elements",
+    "theme",
+    "material"
+  ],
+  "author": "Tony Mobily, Raphael Mattos",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/mobily-enterprises/nn/issues"
+  },
+  "homepage": "https://github.com/mobily-enterprises/nn#readme",
+  "dependencies": {
+    "docco-next": "^0.9.4",
+    "element-internals-polyfill": "^0.1.43",
+    "lit": "^2.0.0-rc.4",
+    "lit-element": "^3.0.0-rc.1",
+    "es6-dev-server": "^0.0.10"
+  },
+  "standard": {
+    "globals": [
+      "customElements",
+      "MutationObserver",
+      "LabelsMixin",
+      "NativeReflectorMixin",
+      "StyleableMixin"
+    ]
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "eslint": "^6.3.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-lit": "^1.2.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "rollup": "^1.23.1",
+    "rollup-plugin-terser": "^7.x.x",
+    "standard": "^14.3.1"
+  }
+}
