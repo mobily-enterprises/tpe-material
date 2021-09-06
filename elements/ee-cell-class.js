@@ -8,6 +8,10 @@ export class EeCellMaterial extends Shared(EeCell) {
     return [
       super.styles,
       css`
+        :host {
+          display: flex;
+        }
+
       `
     ]
   }

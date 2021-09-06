@@ -8,6 +8,9 @@ export class EeRowMaterial extends Shared(EeRow) {
     return [
       super.styles,
       css`
+        :host {
+          display: flex;
+        }
       `
     ]
   }
