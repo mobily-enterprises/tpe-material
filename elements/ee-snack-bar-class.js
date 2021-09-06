@@ -1,4 +1,4 @@
-import { EeSnackBar } from 'tpe2/elements/ee-snack-bar'
+import { EeSnackBar } from 'tpe2/elements/ee-snack-bar-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

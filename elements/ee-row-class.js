@@ -1,4 +1,4 @@
-import { EeRow } from 'tpe2/elements/ee-row'
+import { EeRow } from 'tpe2/elements/ee-row-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

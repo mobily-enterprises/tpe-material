@@ -1,4 +1,4 @@
-import { EeHeader } from 'tpe2/elements/ee-header'
+import { EeHeader } from 'tpe2/elements/ee-header-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

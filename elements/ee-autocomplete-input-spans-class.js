@@ -1,9 +1,9 @@
-import { NnAutocompleteInputSpans } from 'tpe2/elements/nn-autocomplete-input-spans-class'
+import { EeAutocompleteInputSpans } from 'tpe2/elements/ee-autocomplete-input-spans-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'
 
-export class NnAutocompleteInputSpansMaterial extends Shared(NnAutocompleteInputSpans) {
+export class EeAutocompleteInputSpansMaterial extends Shared(EeAutocompleteInputSpans) {
   static get styles () {
     return [
       super.styles,
@@ -13,5 +13,5 @@ export class NnAutocompleteInputSpansMaterial extends Shared(NnAutocompleteInput
   }
 }
 
-tpeRegistry.register('ee-autocomplete-input-spans', NnAutocompleteInputSpansMaterial)
+tpeRegistry.register('ee-autocomplete-input-spans', EeAutocompleteInputSpansMaterial)
 

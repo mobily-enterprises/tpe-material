@@ -1,4 +1,4 @@
-import { EnInputRange } from 'tpe2/elements/en-input-range'
+import { EnInputRange } from 'tpe2/elements/en-input-range-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

@@ -1,9 +1,9 @@
-import { NnInputWeek } from 'tpe2/elements/nn-input-week'
+import { NnInputWeek } from 'tpe2/elements/nn-input-week-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'
 
-export class NnInputWeek extends Shared(NnInputWeek) {
+export class NnInputWeekMaterial extends Shared(NnInputWeek) {
     static get styles () {
     return [
       super.styles,

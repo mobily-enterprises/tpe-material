@@ -1,4 +1,4 @@
-import { NnInputColor } from 'tpe2/elements/nn-input-color'
+import { NnInputColor } from 'tpe2/elements/nn-input-color-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

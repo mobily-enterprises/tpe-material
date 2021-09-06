@@ -1,4 +1,4 @@
-import { EeDrawer } from 'tpe2/elements/ee-drawer'
+import { EeDrawer } from 'tpe2/elements/ee-drawer-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

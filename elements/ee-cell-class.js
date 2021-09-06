@@ -1,4 +1,4 @@
-import { EeCell } from 'tpe2/elements/ee-cell'
+import { EeCell } from 'tpe2/elements/ee-cell-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

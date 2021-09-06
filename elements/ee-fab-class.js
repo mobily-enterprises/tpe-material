@@ -1,4 +1,4 @@
-import { EeFab } from 'tpe2/elements/ee-fab'
+import { EeFab } from 'tpe2/elements/ee-fab-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

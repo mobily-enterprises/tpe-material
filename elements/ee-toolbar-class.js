@@ -1,4 +1,4 @@
-import { EeToolbar } from 'tpe2/elements/ee-toolbar'
+import { EeToolbar } from 'tpe2/elements/ee-toolbar-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

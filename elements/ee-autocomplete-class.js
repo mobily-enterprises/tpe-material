@@ -1,4 +1,4 @@
-import { EeAutocomplete } from 'tpe2/elements/ee-autocomplete'
+import { EeAutocomplete } from 'tpe2/elements/ee-autocomplete-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

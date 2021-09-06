@@ -1,4 +1,4 @@
-import { EeNavBar } from 'tpe2/elements/ee-nav-bar'
+import { EeNavBar } from 'tpe2/elements/ee-nav-bar-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

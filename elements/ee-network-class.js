@@ -1,4 +1,4 @@
-import { EeNetwork } from 'tpe2/elements/ee-network'
+import { EeNetwork } from 'tpe2/elements/ee-network-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

@@ -1,4 +1,4 @@
-import { EeTabs } from 'tpe2/elements/ee-tabs'
+import { EeTabs } from 'tpe2/elements/ee-tabs-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'

@@ -1,4 +1,4 @@
-import { EnForm } from 'tpe2/elements/en-form'
+import { EnForm } from 'tpe2/elements/en-form-class'
 import { Shared } from '../mixins/shared.js'
 import tpeRegistry from 'tpe2/tpeRegistry'
 import { css } from 'lit'
