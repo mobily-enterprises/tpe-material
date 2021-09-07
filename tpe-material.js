@@ -2,6 +2,6 @@
 
 import 'tpe2/tpe-classes'
 import './tpe-material-classes.js'
-import tpeRegistry from 'tpe2/lib/tpeRegistry.js'
+import { tpeRegistry } from 'tpe2/lib/tpeRegistry.js'
 
 tpeRegistry.defineAll()

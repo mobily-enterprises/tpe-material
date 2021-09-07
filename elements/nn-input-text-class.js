@@ -1,7 +1,7 @@
 import { NnInputText } from 'tpe2/elements/nn-input-text-class'
 import { AddHasValueAttributeMixin } from '../mixins/AddHasValueAttributeMixin'
 import { Shared } from '../mixins/shared.js'
-import tpeRegistry from 'tpe2/lib/tpeRegistry'
+import { tpeRegistry } from 'tpe2/lib/tpeRegistry'
 import { css } from 'lit'
 
 export class NnInputTextMaterial extends Shared(AddHasValueAttributeMixin(NnInputText)) {

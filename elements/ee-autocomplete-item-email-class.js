@@ -1,6 +1,6 @@
 import { EeAutocompleteItemEmail, EeAutocompleteItemEmailView } from 'tpe2/elements/ee-autocomplete-item-email-class'
 import { Shared } from '../mixins/shared.js'
-import tpeRegistry from 'tpe2/lib/tpeRegistry'
+import { tpeRegistry } from 'tpe2/lib/tpeRegistry'
 import { css } from 'lit'
 
 export class EeAutocompleteItemEmailMaterial extends Shared(EeAutocompleteItemEmail) {

@@ -1,6 +1,6 @@
 import { NnInputDate } from 'tpe2/elements/nn-input-date-class'
 import { Shared } from '../mixins/shared.js'
-import tpeRegistry from 'tpe2/lib/tpeRegistry'
+import { tpeRegistry } from 'tpe2/lib/tpeRegistry'
 import { css } from 'lit'
 
 export class NnInputDateMaterial extends Shared(NnInputDate) {

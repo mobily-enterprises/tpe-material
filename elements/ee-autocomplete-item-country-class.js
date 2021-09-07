@@ -1,6 +1,6 @@
 import { EeAutocompleteItemCountry, EeAutocompleteItemCountryView } from 'tpe2/elements/ee-autocomplete-item-country-class'
 import { Shared } from '../mixins/shared.js'
-import tpeRegistry from 'tpe2/lib/tpeRegistry'
+import { tpeRegistry } from 'tpe2/lib/tpeRegistry'
 import { css } from 'lit'
 
 export class EeAutocompleteItemCountryMaterial extends Shared(EeAutocompleteItemCountry) {
