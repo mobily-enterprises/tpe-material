@@ -1,6 +1,6 @@
 import { NnInputSubmit } from 'tpe2/elements/nn-input-submit-class'
 import { Shared } from '../mixins/shared.js'
-import tpeRegistry from 'tpe2/tpeRegistry'
+import tpeRegistry from 'tpe2/lib/tpeRegistry'
 import { css } from 'lit'
 
 export class NnInputSubmitMaterial extends Shared(NnInputSubmit) {
