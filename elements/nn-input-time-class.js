@@ -1,6 +1,6 @@
-import { NnInputTime } from 'tpe2/elements/nn-input-time-class'
+import { NnInputTime } from 'tpe/elements/nn-input-time-class'
 import { Shared } from '../mixins/shared.js'
-import { tpeRegistry } from 'tpe2/lib/tpeRegistry'
+import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
 export class NnInputTimeMaterial extends Shared(NnInputTime) {

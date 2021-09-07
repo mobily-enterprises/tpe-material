@@ -1,7 +1,7 @@
 
-import { NnInputFile } from 'tpe2/elements/nn-input-file-class'
+import { NnInputFile } from 'tpe/elements/nn-input-file-class'
 import { Shared } from '../mixins/shared.js'
-import { tpeRegistry } from 'tpe2/lib/tpeRegistry'
+import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css, html } from 'lit'
 
 export class NnInputFileMaterial extends Shared(NnInputFile) {

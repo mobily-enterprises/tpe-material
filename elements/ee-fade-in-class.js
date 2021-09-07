@@ -1,6 +1,6 @@
-import { EeFadeIn } from 'tpe2/elements/ee-fade-in-class'
+import { EeFadeIn } from 'tpe/elements/ee-fade-in-class'
 import { Shared } from '../mixins/shared.js'
-import { tpeRegistry } from 'tpe2/lib/tpeRegistry'
+import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
 export class EeFadeInMaterial extends Shared(EeFadeIn) {

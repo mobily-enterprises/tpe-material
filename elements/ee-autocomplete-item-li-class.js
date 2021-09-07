@@ -1,6 +1,6 @@
-import { EeAutocompleteItemLi, EeAutocompleteItemLiView } from 'tpe2/elements/ee-autocomplete-item-li-class'
+import { EeAutocompleteItemLi, EeAutocompleteItemLiView } from 'tpe/elements/ee-autocomplete-item-li-class'
 import { Shared } from '../mixins/shared.js'
-import { tpeRegistry } from 'tpe2/lib/tpeRegistry'
+import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
 export class EeAutocompleteItemLiMaterial extends Shared(EeAutocompleteItemLi) {
