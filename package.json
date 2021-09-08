@@ -1,6 +1,6 @@
 {
   "name": "tpe-material",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The Platform Elements - Material Theme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -30,7 +30,7 @@
     "es6-dev-server": "^0.0.10",
     "lit": "^2.0.0-rc.4",
     "lit-element": "^3.0.0-rc.1",
-    "tpe": "1.x.x"
+    "tpe": "^1.0.4"
   },
   "standard": {
     "globals": [

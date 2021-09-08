@@ -4036,6 +4036,7 @@ class EeTabs extends StyleableMixin(n$3) {
 
         :host #contentContainer {
           height: 100%;
+          padding: var(--ee-tabs-content-padding, 10px);
         }
 
         #contentContainer ::slotted(*) {
@@ -4043,7 +4044,7 @@ class EeTabs extends StyleableMixin(n$3) {
         }
 
         #contentContainer ::slotted([active]) {
-          display: block;
+          display: initial;
         }
 
         nav ::slotted(*) .icon {
@@ -5102,38 +5103,27 @@ tpeRegistry.register('nn-button', NnButton);
 
 class NnInputButton extends FormElementMixin(NativeValidatorMixin(InputMixin(NativeReflectorMixin(n$3)))) {
   render () {
-    
     return y`
       <input type="button" id="native">
         <slot></slot>
      `
   }
+
+  constructor () {
+    super();
+  }
+  
 }
 tpeRegistry.register('nn-input-button', NnInputButton);
-
-class NnInputColor extends FormElementMixin(NativeValidatorMixin(StyleableMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="color" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
-  }
-}
-tpeRegistry.register('nn-input-color', NnInputColor);
 
 // This element is a thin wrap to `<input type=text`>.
 
 class NnInputText extends FormElementMixin(NativeValidatorMixin(StyleableMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
   render () {
-    
     return y`
       ${this.ifLabelBefore}
       ${this.ifValidationMessageBefore}
-      <input type="text" id="native" real-time-event="input" >
+      <input type="${this.type || 'text'}" id="native" real-time-event="input" >
       ${this.ifValidationMessageAfter}
       ${this.ifLabelAfter}
       <slot id="datalist-slot" name="datalist"></slot>
@@ -5189,49 +5179,39 @@ class NnInputText extends FormElementMixin(NativeValidatorMixin(StyleableMixin(L
 }
 tpeRegistry.register('nn-input-text', NnInputText);
 
+class NnInputColor extends NnInputText {
+  constructor () {
+    super();
+    this.type = 'color';
+  }
+}
+tpeRegistry.register('nn-input-color', NnInputColor);
+
 class NnInputDate extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="date" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type = 'date';
   }
 }
 tpeRegistry.register('nn-input-date', NnInputDate);
 
 class NnInputDateTimeLocal extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="datetime-local" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type = 'datetime-local';
   }
 }
 tpeRegistry.register('nn-input-datetime-local', NnInputDateTimeLocal);
 
 class NnInputEmail extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="email" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type = 'email';
   }
 }
 tpeRegistry.register('nn-input-email', NnInputEmail);
 
-class NnInputFile extends FormElementMixin(NativeValidatorMixin(StyleableMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
+class NnInputFile extends FormElementMixin(StyleableMixin(InputMixin(NativeReflectorMixin(n$3)))) {
   static get styles () {
     return [
       super.styles,
@@ -5247,10 +5227,6 @@ class NnInputFile extends FormElementMixin(NativeValidatorMixin(StyleableMixin(L
           position: absolute;
           width: 1px;
           white-space: nowrap; /* 1 */
-        }
-
-        nn-button {
-          margin: auto
         }
       `
     ]
@@ -5279,12 +5255,8 @@ class NnInputFile extends FormElementMixin(NativeValidatorMixin(StyleableMixin(L
     
     // From https://stackoverflow.com/a/25825731/829771
     return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
       <input type="file" id="native" @change="${this.fileNameChanged}" ?hidden=${this.hideNative} title=${this.title}>
-      ${this.ifValidationMessageAfter}
       ${this.fileName}
-      ${this.ifLabelAfter}
     `
   }
 
@@ -5306,43 +5278,25 @@ class NnInputFile extends FormElementMixin(NativeValidatorMixin(StyleableMixin(L
 tpeRegistry.register('nn-input-file', NnInputFile);
 
 class NnInputMonth extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="month" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type = 'month';
   }
 }
 tpeRegistry.register('nn-input-month', NnInputMonth);
 
 class NnInputNumber extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="number" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type = 'number';
   }
 }
 tpeRegistry.register('nn-input-number', NnInputNumber);
 
 class NnInputPassword extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="password" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type = 'password';
   }
 }
 tpeRegistry.register('nn-input-password', NnInputPassword);
@@ -5386,30 +5340,18 @@ class NnInputRadio extends FormElementMixin(NativeValidatorMixin(LabelsMixin(Sty
 }
 tpeRegistry.register('nn-input-radio', NnInputRadio);
 
-class NnInputRange extends FormElementMixin(NativeValidatorMixin(StyleableMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="range" id="native" real-time-event="input">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+class NnInputRange extends NnInputText {
+  constructor () {
+    super();
+    this.type = 'range';
   }
 }
 tpeRegistry.register('nn-input-range', NnInputRange);
 
 class NnInputSearch extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="search" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type= 'search';
   }
 }
 tpeRegistry.register('nn-input-search', NnInputSearch);
@@ -5431,57 +5373,33 @@ class NnInputSubmit extends FormElementMixin(NativeValidatorMixin(InputMixin(Nat
 tpeRegistry.register('nn-input-submit', NnInputSubmit);
 
 class NnInputTel extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="tel" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type= 'tel';
   }
 }
 tpeRegistry.register('nn-input-tel', NnInputTel);
 
 class NnInputTime extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="time" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type= 'time';
   }
 }
 tpeRegistry.register('nn-input-time', NnInputTime);
 
 class NnInputUrl extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="url" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type= 'url';
   }
 }
 tpeRegistry.register('nn-input-url', NnInputUrl);
 
 class NnInputWeek extends NnInputText {
-  render () {
-    
-    return y`
-      ${this.ifLabelBefore}
-      ${this.ifValidationMessageBefore}
-      <input type="week" id="native">
-      ${this.ifValidationMessageAfter}
-      ${this.ifLabelAfter}
-    `
+  constructor () {
+    super();
+    this.type= 'week';
   }
 }
 tpeRegistry.register('nn-input-week', NnInputWeek);
