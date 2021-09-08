@@ -1,5 +1,5 @@
 import { NnInputButton } from 'tpe/elements/nn-input-button-class'
-import { Shared } from '../mixins/shared.js'
+import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 

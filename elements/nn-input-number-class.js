@@ -1,5 +1,5 @@
 import { NnInputNumber } from 'tpe/elements/nn-input-number-class'
-import { Shared } from '../mixins/shared.js'
+import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 

@@ -1,5 +1,5 @@
 import { NnButton } from 'tpe/elements/nn-button-class'
-import { Shared } from '../mixins/shared.js'
+import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
@@ -9,6 +9,7 @@ export class NnButtonMaterial extends Shared(NnButton) {
       super.styles,
       css`
         :host {
+          display: block;
           width: max-content;
           padding: 4px 10px;
         }

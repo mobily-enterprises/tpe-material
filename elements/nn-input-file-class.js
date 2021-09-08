@@ -1,6 +1,6 @@
 
 import { NnInputFile } from 'tpe/elements/nn-input-file-class'
-import { Shared } from '../mixins/shared.js'
+import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css, html } from 'lit'
 
@@ -10,6 +10,7 @@ export class NnInputFileMaterial extends Shared(NnInputFile) {
       super.styles,
       css`
         :host {
+          display: block;
           min-width: 130px;
         }
 

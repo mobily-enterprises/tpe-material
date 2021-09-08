@@ -1,5 +1,5 @@
 import { NnInputDateTimeLocal } from 'tpe/elements/nn-input-date-time-local-class'
-import { Shared } from '../mixins/shared.js'
+import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 

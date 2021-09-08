@@ -1,5 +1,5 @@
 import { EeFadeIn } from 'tpe/elements/ee-fade-in-class'
-import { Shared } from '../mixins/shared.js'
+import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 

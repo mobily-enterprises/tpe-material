@@ -305,7 +305,6 @@ export const Shared = (base) => {
 
           :host {
             /* These properties as common to all elements and important to enable proper styling of native elements. */
-            display: block; 
             appearance: none;
             -moz-appearance: none;
             -webkit-appearance: none;

@@ -1,6 +1,6 @@
 import { NnTextarea } from 'tpe/elements/nn-textarea-class'
 import { AddHasValueAttributeMixin } from '../mixins/AddHasValueAttributeMixin'
-import { Shared } from '../mixins/shared.js'
+import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
