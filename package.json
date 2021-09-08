@@ -1,10 +1,6 @@
 {
   "name": "tpe-material",
-<<<<<<< HEAD
   "version": "1.0.3",
-=======
-  "version": "1.0.2",
->>>>>>> 399c2ca5d051e0e755a3f0d66887b4c478c8ee63
   "description": "The Platform Elements - Material Theme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
