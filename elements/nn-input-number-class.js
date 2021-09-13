@@ -1,10 +1,16 @@
-import { NnInputNumber } from 'tpe/elements/nn-input-number-class'
+import { NnInputTextMaterial } from './nn-input-text-class'
 import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
-export class NnInputNumberMaterial extends Shared(NnInputNumber) {
+export class NnInputNumberMaterial extends Shared(NnInputTextMaterial) {
+  constructor () {
+    super()
+    this.inputType = 'number'
+  }
+  
   static get styles () {
+    console.log(super.styles)
     return [
       super.styles,
       css`

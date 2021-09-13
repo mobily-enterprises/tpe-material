@@ -1,9 +1,9 @@
-import { NnInputUrl } from 'tpe/elements/nn-input-url-class'
+import { NnInputTextMaterial } from './nn-input-text-class'
 import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
-export class NnInputUrlMaterial extends Shared(NnInputUrl) {
+export class NnInputUrlMaterial extends Shared(NnInputTextMaterial) {
   static get styles () {
     return [
       super.styles,

@@ -1,9 +1,9 @@
-import { NnInputRange } from 'tpe/elements/nn-input-range-class'
+import { NnInputTextMaterial } from './nn-input-text-class'
 import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
-export class NnInputRangeMaterial extends Shared(NnInputRange) {
+export class NnInputRangeMaterial extends Shared(NnInputTextMaterial) {
   static get styles () {
     return [
       super.styles,
