@@ -28,7 +28,7 @@
   "dependencies": {
     "docco-next": "^0.9.4",
     "es6-dev-server": "^0.0.10",
-    "lit": "^2.0.0-rc.4",
+    "lit": "^2.0.0",
     "lit-element": "^3.0.0-rc.1",
     "tpe": "^1.0.4"
   },
