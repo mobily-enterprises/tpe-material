@@ -8,6 +8,9 @@ export class EeToolbarMaterial extends Shared(EeToolbar) {
     return [
       super.styles,
       css`
+        :host {
+          display: flex;
+        }
       `
     ]
   }

@@ -1,9 +1,9 @@
-import { NnInputTextMaterial } from './nn-input-text-class'
+import { NnInputRadio } from 'tpe/elements/nn-input-radio-class'
 import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
-export class NnInputRadioMaterial extends Shared(NnInputTextMaterial) {
+export class NnInputRadioMaterial extends Shared(NnInputRadio) {
   // Style depends on CSS being able to find label as sibling of the #native element.
   // CSS can select next siblings, but not previous.  This guarantees label is rendered after #native in the shadowDOM
   static get properties () {

@@ -1,9 +1,9 @@
-import { NnInputTextMaterial } from './nn-input-text-class'
+import { NnMeter } from 'tpe/elements/nn-meter-class'
 import { Shared } from '../mixins/Shared.js'
 import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
-export class NnMeterMaterial extends Shared(NnInputTextMaterial) {
+export class NnMeterMaterial extends Shared(NnMeter) {
   static get styles () {
     return [
       super.styles,
