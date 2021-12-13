@@ -10,7 +10,6 @@ export class NnInputNumberMaterial extends Shared(NnInputTextMaterial) {
   }
   
   static get styles () {
-    console.log(super.styles)
     return [
       super.styles,
       css`
