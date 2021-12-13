@@ -4,11 +4,6 @@ import { tpeRegistry } from 'tpe/lib/tpeRegistry'
 import { css } from 'lit'
 
 export class NnInputNumberMaterial extends Shared(NnInputTextMaterial) {
-  constructor () {
-    super()
-    this.inputType = 'number'
-  }
-  
   static get styles () {
     return [
       super.styles,
