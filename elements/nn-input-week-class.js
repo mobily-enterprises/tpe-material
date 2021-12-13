@@ -11,6 +11,11 @@ export class NnInputWeekMaterial extends Shared(NnInputTextMaterial) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'week'
+  }
 }
 
 tpeRegistry.register('nn-input-week', NnInputWeekMaterial)

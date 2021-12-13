@@ -11,6 +11,11 @@ export class NnInputUrlMaterial extends Shared(NnInputTextMaterial) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'url'
+  }
 }
 
 tpeRegistry.register('nn-input-url', NnInputUrlMaterial)

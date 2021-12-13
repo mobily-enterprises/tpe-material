@@ -13,6 +13,11 @@ export class NnInputSubmitMaterial extends Shared(NnInputSubmit) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'submit'
+  }
 }
 
 tpeRegistry.register('nn-input-submit', NnInputSubmitMaterial)

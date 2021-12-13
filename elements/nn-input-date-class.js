@@ -6,7 +6,7 @@ import { css } from 'lit'
 export class NnInputDateMaterial extends Shared(NnInputTextMaterial) {
   constructor () {
     super()
-    this.inputType = 'data'
+    this.inputType = 'date'
   }
 }
 

@@ -11,6 +11,11 @@ export class NnInputTelMaterial extends Shared(NnInputTextMaterial) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'tel'
+  }
 }
 
 tpeRegistry.register('nn-input-tel', NnInputTelMaterial)

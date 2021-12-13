@@ -88,6 +88,11 @@ export class NnInputButtonMaterial extends Shared(NnInputButton) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'button'
+  }
 }
 
 tpeRegistry.register('nn-input-button', NnInputButtonMaterial)

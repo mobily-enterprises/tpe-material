@@ -11,6 +11,11 @@ export class NnInputMonthMaterial extends Shared(NnInputTextMaterial) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'month'
+  }
 }
 
 tpeRegistry.register('nn-input-month', NnInputMonthMaterial)

@@ -11,6 +11,11 @@ export class NnInputPasswordMaterial extends Shared(NnInputTextMaterial) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'password'
+  }
 }
 
 tpeRegistry.register('nn-input-password', NnInputPasswordMaterial)

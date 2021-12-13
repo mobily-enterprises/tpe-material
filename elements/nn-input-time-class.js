@@ -11,6 +11,11 @@ export class NnInputTimeMaterial extends Shared(NnInputTextMaterial) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'time'
+  }
 }
 
 tpeRegistry.register('nn-input-time', NnInputTimeMaterial)

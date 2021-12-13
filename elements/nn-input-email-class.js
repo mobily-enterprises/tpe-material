@@ -11,6 +11,11 @@ export class NnInputEmailMaterial extends Shared(NnInputTextMaterial) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'email'
+  }
 }
 
 tpeRegistry.register('nn-input-email', NnInputEmailMaterial)

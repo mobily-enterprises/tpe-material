@@ -11,6 +11,11 @@ export class NnInputSearchMaterial extends Shared(NnInputTextMaterial) {
       `
     ]
   }
+
+  constructor () {
+    super()
+    this.inputType = 'search'
+  }
 }
 
 tpeRegistry.register('nn-input-search', NnInputSearchMaterial)
