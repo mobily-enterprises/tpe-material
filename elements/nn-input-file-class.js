@@ -50,7 +50,7 @@ export class NnInputFileMaterial extends Shared(NnInputFile) {
       <input type="file" id="native" @change="${this.fileNameChanged}" ?hidden=${this.hideNative} title=${this.title} >
       ${this.ifValidationMessageAfter}
       ${this.fileName
-      ? this.lit.html`
+      ? html`
           <div id="filename" title="${this.title}">${this.fileName}</div>
         `
       : ''
