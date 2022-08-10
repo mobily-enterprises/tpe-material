@@ -81,9 +81,18 @@ export class EeAutocompleteInputSpansMaterial extends Shared(EeAutocompleteInput
           #ta:disabled:hover {
             background-color: initial !important;
           }
+
+          #list {
+            align-items: baseline;
+          }
+
+          #list > span {
+            height: min-content;
+          }
       `
     ]
   }
 }
 
 tpeRegistry.register('ee-autocomplete-input-spans', EeAutocompleteInputSpansMaterial)
+
