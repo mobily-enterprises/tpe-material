@@ -270,6 +270,63 @@ const StyleableMixin = (base) => {
   }
 };
 
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const t$2=window.ShadowRoot&&(void 0===window.ShadyCSS||window.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,e$3=Symbol(),s$3=new Map;class n$4{constructor(t,s){if(this._$cssResult$=!0,s!==e$3)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t;}get styleSheet(){let e=s$3.get(this.cssText);return t$2&&void 0===e&&(s$3.set(this.cssText,e=new CSSStyleSheet),e.replaceSync(this.cssText)),e}toString(){return this.cssText}}const o$4=t=>new n$4("string"==typeof t?t:t+"",e$3),S$2=(e,s)=>{t$2?e.adoptedStyleSheets=s.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet)):s.forEach((t=>{const s=document.createElement("style");s.textContent=t.cssText,e.appendChild(s);}));},i$2=t$2?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const s of t.cssRules)e+=s.cssText;return o$4(e)})(t):t;
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */var s$4,e$4;const r$4={toAttribute(t,i){switch(i){case Boolean:t=t?"":null;break;case Object:case Array:t=null==t?t:JSON.stringify(t);}return t},fromAttribute(t,i){let s=t;switch(i){case Boolean:s=null!==t;break;case Number:s=null===t?null:Number(t);break;case Object:case Array:try{s=JSON.parse(t);}catch(t){s=null;}}return s}},h$2=(t,i)=>i!==t&&(i==i||t==t),o$5={attribute:!0,type:String,converter:r$4,reflect:!1,hasChanged:h$2};class n$5 extends HTMLElement{constructor(){super(),this._$Et=new Map,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Ei=null,this.o();}static addInitializer(t){var i;null!==(i=this.l)&&void 0!==i||(this.l=[]),this.l.push(t);}static get observedAttributes(){this.finalize();const t=[];return this.elementProperties.forEach(((i,s)=>{const e=this._$Eh(s,i);void 0!==e&&(this._$Eu.set(e,s),t.push(e));})),t}static createProperty(t,i=o$5){if(i.state&&(i.attribute=!1),this.finalize(),this.elementProperties.set(t,i),!i.noAccessor&&!this.prototype.hasOwnProperty(t)){const s="symbol"==typeof t?Symbol():"__"+t,e=this.getPropertyDescriptor(t,s,i);void 0!==e&&Object.defineProperty(this.prototype,t,e);}}static getPropertyDescriptor(t,i,s){return {get(){return this[i]},set(e){const r=this[t];this[i]=e,this.requestUpdate(t,r,s);},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)||o$5}static finalize(){if(this.hasOwnProperty("finalized"))return !1;this.finalized=!0;const t=Object.getPrototypeOf(this);if(t.finalize(),this.elementProperties=new Map(t.elementProperties),this._$Eu=new Map,this.hasOwnProperty("properties")){const t=this.properties,i=[...Object.getOwnPropertyNames(t),...Object.getOwnPropertySymbols(t)];for(const s of i)this.createProperty(s,t[s]);}return this.elementStyles=this.finalizeStyles(this.styles),!0}static finalizeStyles(i){const s=[];if(Array.isArray(i)){const e=new Set(i.flat(1/0).reverse());for(const i of e)s.unshift(i$2(i));}else void 0!==i&&s.push(i$2(i));return s}static _$Eh(t,i){const s=i.attribute;return !1===s?void 0:"string"==typeof s?s:"string"==typeof t?t.toLowerCase():void 0}o(){var t;this._$Ev=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$Ep(),this.requestUpdate(),null===(t=this.constructor.l)||void 0===t||t.forEach((t=>t(this)));}addController(t){var i,s;(null!==(i=this._$Em)&&void 0!==i?i:this._$Em=[]).push(t),void 0!==this.renderRoot&&this.isConnected&&(null===(s=t.hostConnected)||void 0===s||s.call(t));}removeController(t){var i;null===(i=this._$Em)||void 0===i||i.splice(this._$Em.indexOf(t)>>>0,1);}_$Ep(){this.constructor.elementProperties.forEach(((t,i)=>{this.hasOwnProperty(i)&&(this._$Et.set(i,this[i]),delete this[i]);}));}createRenderRoot(){var t;const s=null!==(t=this.shadowRoot)&&void 0!==t?t:this.attachShadow(this.constructor.shadowRootOptions);return S$2(s,this.constructor.elementStyles),s}connectedCallback(){var t;void 0===this.renderRoot&&(this.renderRoot=this.createRenderRoot()),this.enableUpdating(!0),null===(t=this._$Em)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostConnected)||void 0===i?void 0:i.call(t)}));}enableUpdating(t){}disconnectedCallback(){var t;null===(t=this._$Em)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostDisconnected)||void 0===i?void 0:i.call(t)}));}attributeChangedCallback(t,i,s){this._$AK(t,s);}_$Eg(t,i,s=o$5){var e,h;const n=this.constructor._$Eh(t,s);if(void 0!==n&&!0===s.reflect){const o=(null!==(h=null===(e=s.converter)||void 0===e?void 0:e.toAttribute)&&void 0!==h?h:r$4.toAttribute)(i,s.type);this._$Ei=t,null==o?this.removeAttribute(n):this.setAttribute(n,o),this._$Ei=null;}}_$AK(t,i){var s,e,h;const o=this.constructor,n=o._$Eu.get(t);if(void 0!==n&&this._$Ei!==n){const t=o.getPropertyOptions(n),l=t.converter,a=null!==(h=null!==(e=null===(s=l)||void 0===s?void 0:s.fromAttribute)&&void 0!==e?e:"function"==typeof l?l:null)&&void 0!==h?h:r$4.fromAttribute;this._$Ei=n,this[n]=a(i,t.type),this._$Ei=null;}}requestUpdate(t,i,s){let e=!0;void 0!==t&&(((s=s||this.constructor.getPropertyOptions(t)).hasChanged||h$2)(this[t],i)?(this._$AL.has(t)||this._$AL.set(t,i),!0===s.reflect&&this._$Ei!==t&&(void 0===this._$ES&&(this._$ES=new Map),this._$ES.set(t,s))):e=!1),!this.isUpdatePending&&e&&(this._$Ev=this._$EC());}async _$EC(){this.isUpdatePending=!0;try{await this._$Ev;}catch(t){Promise.reject(t);}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){var t;if(!this.isUpdatePending)return;this.hasUpdated,this._$Et&&(this._$Et.forEach(((t,i)=>this[i]=t)),this._$Et=void 0);let i=!1;const s=this._$AL;try{i=this.shouldUpdate(s),i?(this.willUpdate(s),null===(t=this._$Em)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostUpdate)||void 0===i?void 0:i.call(t)})),this.update(s)):this._$ET();}catch(t){throw i=!1,this._$ET(),t}i&&this._$AE(s);}willUpdate(t){}_$AE(t){var i;null===(i=this._$Em)||void 0===i||i.forEach((t=>{var i;return null===(i=t.hostUpdated)||void 0===i?void 0:i.call(t)})),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t);}_$ET(){this._$AL=new Map,this.isUpdatePending=!1;}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$Ev}shouldUpdate(t){return !0}update(t){void 0!==this._$ES&&(this._$ES.forEach(((t,i)=>this._$Eg(i,this[i],t))),this._$ES=void 0),this._$ET();}updated(t){}firstUpdated(t){}}n$5.finalized=!0,n$5.elementProperties=new Map,n$5.elementStyles=[],n$5.shadowRootOptions={mode:"open"},null===(s$4=globalThis.reactiveElementPlatformSupport)||void 0===s$4||s$4.call(globalThis,{ReactiveElement:n$5}),(null!==(e$4=globalThis.reactiveElementVersions)&&void 0!==e$4?e$4:globalThis.reactiveElementVersions=[]).push("1.0.0-rc.4");
+
+// CustomStylesMixin adds a non-standard LitElement property: _customStyles_.
+// Using _customStyles_ allows developers to completely bypass the shadowRoot
+// scope and redefine any part or all of the elements CSS using a stylesheet
+// string or a CSSTemplateResult object. The principle behind this mechanism is
+// that if a new style is added using this property, the adopteStylesheet of the
+// element is updated in realtime. This approach can be costly for performance
+// if abused, but for the main purpose of overriding scoped CSS, it won't have
+// any side effects.
+
+const CustomStylesMixin = (base) => {
+  return class Theme extends base {
+    get customStyles () {
+      return this._customStyles || []
+    }
+
+    set customStyles (cssTemplate) {
+      if (!cssTemplate) return
+      if (typeof cssTemplate === 'string') {
+        cssTemplate = o`${cssTemplate}`;
+      }
+
+      // Always set customStyles as an array, as always redefine the property,
+      // for simplicity in subsequent steps
+      if (!Array.isArray(cssTemplate)) cssTemplate = [cssTemplate];
+      this._customStyles = cssTemplate;
+
+      // If customStyles exists at construction time (usually because it was set
+      // by an attribute), shadowRoot won't be available, which means the
+      // element is not ready for overriding styles. The redefined
+      // `createRenderRoot` below will use the customStyles at the right time 
+      if (!this.shadowRoot) return
+      S$2(this.shadowRoot, [...this.constructor.styles, ...this._customStyles]);
+      this.requestUpdate();
+    }
+
+    createRenderRoot () {
+      const renderRoot = this.shadowRoot || this.attachShadow(this.constructor.shadowRootOptions);
+      // Use customStyles along with memoized elementStyles  
+      S$2(renderRoot, [...this.constructor.elementStyles, ...this.customStyles]);
+      return renderRoot;
+    }
+  }
+};
+
 class TpeRegistry {
 
   constructor (){
@@ -298,7 +355,7 @@ class TpeRegistry {
 
 const tpeRegistry = new TpeRegistry();
 
-class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(LabelsMixin(n$3))) {
+class EeAutocompleteInputSpans extends CustomStylesMixin(SyntheticValidatorMixin(StyleableMixin(LabelsMixin(n$3)))) {
   static get properties () {
     return {
       name: {
@@ -457,6 +514,9 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
   }
 
   firstUpdated () {
+    this.list = this.shadowRoot.querySelector('#list');
+    this.ta = this.shadowRoot.querySelector('#ta');
+    this.ni = this.shadowRoot.querySelector('#ni');
     if (this._tempValue) {
       this.value = this._tempValue;
     }
@@ -464,7 +524,7 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
   }
 
   focus () {
-    this.shadowRoot.querySelector('#ta').focus();
+    this.ta.focus();
   }
 
   _listClicked (e) {
@@ -473,12 +533,10 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
 
   get value () {
     let r;
-    let list;
     switch (this.valueAs) {
     case 'json':
       r = {};
-      list = this.shadowRoot.querySelector('#list');
-      for (const span of list.children) {
+      for (const span of this.list.children) {
         if (span.id === 'ta') continue
         const idValue = span.firstChild.idValue;
         r[idValue] = span.firstChild.data;
@@ -486,8 +544,7 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
       return r
     default:
       r = [];
-      list = this.shadowRoot.querySelector('#list');
-      for (const span of list.children) {
+      for (const span of this.list.children) {
         if (span.id === 'ta') continue
         if (this.valueAs === 'text') {
           // Won't push invalid spans to the final value
@@ -501,16 +558,14 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
   }
 
   set value (v) {
-    const list = this.shadowRoot.querySelector('#list');
-
-    if (!list) {
+    if (!this.list) {
       this._tempValue = v;
       return
     }
     // Remove all children
-    while ((this.clearOnSetValue || v === '' || v === null || v === undefined) && list.firstChild) {
-      if (list.firstChild.id === 'ta') break
-      list.removeChild(list.firstChild);
+    while ((this.clearOnSetValue || v === '' || v === null || v === undefined) && this.list.firstChild) {
+      if (this.list.firstChild.id === 'ta') break
+      this.list.removeChild(list.firstChild);
     }
 
     // Assign all children using pickedElement
@@ -542,8 +597,7 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
   }
 
   get autocompleteValue () {
-    const ta = this.shadowRoot.querySelector('#ta');
-    if (ta) return ta.value
+    if (this.ta) return ta.value
     return ''
   }
 
@@ -554,7 +608,7 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
   // work out a data structure based on the string
   _pickCurrentValue () {
     if (this.valueAs === 'text') {
-      this.pickedElement(this.shadowRoot.querySelector('#ta').value, true);
+      this.pickedElement(this.ta.value, true);
     }
   }
 
@@ -564,8 +618,7 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
   }
 
   _updateNativeInputValue () {
-    const ni = this.shadowRoot.querySelector('#ni');
-    ni.value = this.value;
+    this.ni.value = this.value;
   }
 
   _removeItem (target, which = 'previous') {
@@ -655,12 +708,10 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
     }
     el.data = data;
 
-    const list = this.shadowRoot.querySelector('#list');
     const span = document.createElement('span');
     // -1 means that it will not in the list of tabs, but
     // it will be focusable (spans aren't by default)
     span.setAttribute('tabindex', -1);
-    const ta = this.shadowRoot.querySelector('#ta');
     const removeBtn = this._createRemoveBtn();
 
     span.onkeydown = this._handleKeyEvents.bind(this);
@@ -671,8 +722,8 @@ class EeAutocompleteInputSpans extends SyntheticValidatorMixin(StyleableMixin(La
     span.appendChild(el);
     span.appendChild(removeBtn);
 
-    list.insertBefore(span, ta);
-    ta.value = '';
+    this.list.insertBefore(span, this.ta);
+    this.ta.value = '';
 
     this._updateNativeInputValue();
 
@@ -1009,6 +1060,17 @@ const InputMixin = (base) => {
             ref.setAttribute('aria-labelledby', firstLabelId);
         }
     };
+    const setFormValidity = (form) => {
+        const valid = form.checkValidity();
+        form.toggleAttribute('internals-invalid', !valid);
+        form.toggleAttribute('internals-valid', valid);
+    };
+    const formInputCallback = (event) => {
+        setFormValidity(findParentForm(event.target));
+    };
+    const formChangeCallback = (event) => {
+        setFormValidity(findParentForm(event.target));
+    };
     const formSubmitCallback = (event) => {
         const form = event.target;
         const elements = formElementsMap.get(form);
@@ -1060,6 +1122,8 @@ const InputMixin = (base) => {
                 formElementsMap.set(form, initSet);
                 form.addEventListener('submit', formSubmitCallback);
                 form.addEventListener('reset', formResetCallback);
+                form.addEventListener('input', formInputCallback);
+                form.addEventListener('change', formChangeCallback);
             }
             formsMap.set(form, { ref, internals });
             if (ref.constructor['formAssociated'] && ref.formAssociatedCallback) {
@@ -1067,6 +1131,7 @@ const InputMixin = (base) => {
                     ref.formAssociatedCallback.apply(ref, [form]);
                 }, 0);
             }
+            setFormValidity(form);
         }
     };
     const findParentForm = (elem) => {
@@ -1138,11 +1203,13 @@ const InputMixin = (base) => {
         ariaRowIndex: 'aria-rowindex',
         ariaRowSpan: 'aria-rowspan',
         ariaSelected: 'aria-selected',
+        ariaSetSize: 'aria-setsize',
         ariaSort: 'aria-sort',
         ariaValueMax: 'aria-valuemax',
         ariaValueMin: 'aria-valuemin',
         ariaValueNow: 'aria-valuenow',
-        ariaValueText: 'aria-valuetext'
+        ariaValueText: 'aria-valuetext',
+        role: 'role'
     };
     const initAom = (ref, internals) => {
         for (let key in aom) {
@@ -1196,7 +1263,7 @@ const InputMixin = (base) => {
         validityObject.valueMissing = false;
         return validityObject;
     };
-    const reconcileValidty = (validityObject, newState) => {
+    const reconcileValidity = (validityObject, newState) => {
         validityObject.valid = isValid(newState);
         Object.keys(newState).forEach(key => validityObject[key] = newState[key]);
         return validityObject;
@@ -1408,7 +1475,7 @@ const InputMixin = (base) => {
             }
             const check = { ...validity, ...validityChangesObj };
             delete check.valid;
-            const { valid } = reconcileValidty(validity, check);
+            const { valid } = reconcileValidity(validity, check);
             if (!valid && !validationMessage) {
                 throw new DOMException(`Failed to execute 'setValidity' on 'ElementInternals': The second argument should not be empty if one or more flags in the first argument are true.`);
             }
@@ -1448,7 +1515,34 @@ const InputMixin = (base) => {
     if (!window.CustomStateSet) {
         window.CustomStateSet = CustomStateSet;
     }
-    if (!window.ElementInternals) {
+    function isElementInternalsSupported() {
+        if (!window.ElementInternals) {
+            return false;
+        }
+        class ElementInternalsFeatureDetection extends HTMLElement {
+            constructor() {
+                super();
+                this.internals = this.attachInternals();
+            }
+        }
+        const randomName = `element-internals-feature-detection-${Math.random().toString(36).replace(/[^a-z]+/g, '')}`;
+        customElements.define(randomName, ElementInternalsFeatureDetection);
+        const featureDetectionElement = new ElementInternalsFeatureDetection();
+        return [
+            "shadowRoot",
+            "form",
+            "states",
+            "willValidate",
+            "validity",
+            "validationMessage",
+            "labels",
+            "setFormValue",
+            "setValidity",
+            "checkValidity",
+            "reportValidity"
+        ].every(prop => prop in featureDetectionElement.internals);
+    }
+    if (!isElementInternalsSupported()) {
         window.ElementInternals = ElementInternals;
         function attachShadowObserver(...args) {
             const shadowRoot = attachShadow.apply(this, args);
@@ -1466,7 +1560,7 @@ const InputMixin = (base) => {
             let returnValue = reportValidity.apply(this, args);
             return overrideFormMethod(this, returnValue, 'reportValidity');
         }
-        Object.defineProperty(Element.prototype, 'attachInternals', {
+        Object.defineProperty(HTMLElement.prototype, 'attachInternals', {
             get() {
                 return () => {
                     if (this.tagName.indexOf('-') === -1) {
@@ -1760,7 +1854,7 @@ const NativeValidatorMixin = (base) => {
   }
 };
 
-class NnInputCheckbox extends FormElementMixin(NativeValidatorMixin(LabelsMixin(StyleableMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
+class NnInputCheckbox extends CustomStylesMixin(FormElementMixin(NativeValidatorMixin(LabelsMixin(StyleableMixin(InputMixin(NativeReflectorMixin(n$3))))))) {
   render () {
     
     return y`
@@ -1778,7 +1872,7 @@ class NnInputCheckbox extends FormElementMixin(NativeValidatorMixin(LabelsMixin(
 }
 tpeRegistry.register('nn-input-checkbox', NnInputCheckbox);
 
-class EeAutocompleteItemCountry extends StyleableMixin(n$3) {
+class EeAutocompleteItemCountry extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -1880,7 +1974,7 @@ class EeAutocompleteItemCountryView extends EeAutocompleteItemCountry {
 }
 tpeRegistry.register('ee-autocomplete-item-country-view', EeAutocompleteItemCountryView);
 
-class EeAutocompleteItemEmail extends StyleableMixin(n$3) {
+class EeAutocompleteItemEmail extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -2017,7 +2111,7 @@ class EeAutocompleteItemEmailView extends EeAutocompleteItemEmail {
 }
 tpeRegistry.register('ee-autocomplete-item-email-view', EeAutocompleteItemEmailView);
 
-class EeAutocompleteItemLi extends StyleableMixin(n$3) {
+class EeAutocompleteItemLi extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -2137,7 +2231,7 @@ class EeAutocompleteItemLiView extends EeAutocompleteItemLi {
 }
 tpeRegistry.register('ee-autocomplete-item-li-view', EeAutocompleteItemLiView);
 
-class EeAutocomplete extends StyleableMixin(n$3) {
+class EeAutocomplete extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -2650,7 +2744,7 @@ class EeAutocomplete extends StyleableMixin(n$3) {
 }
 tpeRegistry.register('ee-autocomplete', EeAutocomplete);
 
-class EeCell extends StyleableMixin(n$3) {
+class EeCell extends CustomStylesMixin((StyleableMixin(n$3))) {
   static get styles () {
     return [
       r`
@@ -2731,7 +2825,7 @@ tpeRegistry.register('ee-cell', EeCell);
 
 const chevronLeft = y`<svg class="icon" height="24" viewBox="0 0 24 24" width="24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>`;
 
-class EeDrawer extends StyleableMixin(n$3) {
+class EeDrawer extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       r`
@@ -3022,7 +3116,7 @@ tpeRegistry.register('ee-drawer', EeDrawer);
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-var t$2,i$2;const s$3=globalThis.trustedTypes,e$3=s$3?s$3.createPolicy("lit-html",{createHTML:t=>t}):void 0,o$4=`lit$${(Math.random()+"").slice(9)}$`,n$4="?"+o$4,l$2=`<${n$4}>`,h$2=document,r$4=(t="")=>h$2.createComment(t),d$1=t=>null===t||"object"!=typeof t&&"function"!=typeof t,u$1=Array.isArray,c$1=t=>{var i;return u$1(t)||"function"==typeof(null===(i=t)||void 0===i?void 0:i[Symbol.iterator])},v$1=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,a$1=/-->/g,f$1=/>/g,_$1=/>|[ 	\n\r](?:([^\s"'>=/]+)([ 	\n\r]*=[ 	\n\r]*(?:[^ 	\n\r"'`<>=]|("|')|))|$)/g,g$1=/'/g,m$1=/"/g,$$1=/^(?:script|style|textarea)$/i,T$1=Symbol.for("lit-noChange"),x$1=Symbol.for("lit-nothing"),w$1=new WeakMap,C$1=h$2.createTreeWalker(h$2,129,null,!1),P$1=(t,i)=>{const s=t.length-1,n=[];let h,r=2===i?"<svg>":"",d=v$1;for(let i=0;i<s;i++){const s=t[i];let e,u,c=-1,p=0;for(;p<s.length&&(d.lastIndex=p,u=d.exec(s),null!==u);)p=d.lastIndex,d===v$1?"!--"===u[1]?d=a$1:void 0!==u[1]?d=f$1:void 0!==u[2]?($$1.test(u[2])&&(h=RegExp("</"+u[2],"g")),d=_$1):void 0!==u[3]&&(d=_$1):d===_$1?">"===u[0]?(d=null!=h?h:v$1,c=-1):void 0===u[1]?c=-2:(c=d.lastIndex-u[2].length,e=u[1],d=void 0===u[3]?_$1:'"'===u[3]?m$1:g$1):d===m$1||d===g$1?d=_$1:d===a$1||d===f$1?d=v$1:(d=_$1,h=void 0);const y=d===_$1&&t[i+1].startsWith("/>")?" ":"";r+=d===v$1?s+l$2:c>=0?(n.push(e),s.slice(0,c)+"$lit$"+s.slice(c)+o$4+y):s+o$4+(-2===c?(n.push(void 0),i):y);}const u=r+(t[s]||"<?>")+(2===i?"</svg>":"");return [void 0!==e$3?e$3.createHTML(u):u,n]};class V$1{constructor({strings:t,_$litType$:i},e){let l;this.parts=[];let h=0,d=0;const u=t.length-1,c=this.parts,[v,a]=P$1(t,i);if(this.el=V$1.createElement(v,e),C$1.currentNode=this.el.content,2===i){const t=this.el.content,i=t.firstChild;i.remove(),t.append(...i.childNodes);}for(;null!==(l=C$1.nextNode())&&c.length<u;){if(1===l.nodeType){if(l.hasAttributes()){const t=[];for(const i of l.getAttributeNames())if(i.endsWith("$lit$")||i.startsWith(o$4)){const s=a[d++];if(t.push(i),void 0!==s){const t=l.getAttribute(s.toLowerCase()+"$lit$").split(o$4),i=/([.?@])?(.*)/.exec(s);c.push({type:1,index:h,name:i[2],strings:t,ctor:"."===i[1]?k$1:"?"===i[1]?H$1:"@"===i[1]?I$1:M$1});}else c.push({type:6,index:h});}for(const i of t)l.removeAttribute(i);}if($$1.test(l.tagName)){const t=l.textContent.split(o$4),i=t.length-1;if(i>0){l.textContent=s$3?s$3.emptyScript:"";for(let s=0;s<i;s++)l.append(t[s],r$4()),C$1.nextNode(),c.push({type:2,index:++h});l.append(t[i],r$4());}}}else if(8===l.nodeType)if(l.data===n$4)c.push({type:2,index:h});else {let t=-1;for(;-1!==(t=l.data.indexOf(o$4,t+1));)c.push({type:7,index:h}),t+=o$4.length-1;}h++;}}static createElement(t,i){const s=h$2.createElement("template");return s.innerHTML=t,s}}function E$1(t,i,s=t,e){var o,n,l,h;if(i===T$1)return i;let r=void 0!==e?null===(o=s._$Cl)||void 0===o?void 0:o[e]:s._$Cu;const u=d$1(i)?void 0:i._$litDirective$;return (null==r?void 0:r.constructor)!==u&&(null===(n=null==r?void 0:r._$AO)||void 0===n||n.call(r,!1),void 0===u?r=void 0:(r=new u(t),r._$AT(t,s,e)),void 0!==e?(null!==(l=(h=s)._$Cl)&&void 0!==l?l:h._$Cl=[])[e]=r:s._$Cu=r),void 0!==r&&(i=E$1(t,r._$AS(t,i.values),r,e)),i}class N$1{constructor(t,i){this.v=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}p(t){var i;const{el:{content:s},parts:e}=this._$AD,o=(null!==(i=null==t?void 0:t.creationScope)&&void 0!==i?i:h$2).importNode(s,!0);C$1.currentNode=o;let n=C$1.nextNode(),l=0,r=0,d=e[0];for(;void 0!==d;){if(l===d.index){let i;2===d.type?i=new S$2(n,n.nextSibling,this,t):1===d.type?i=new d.ctor(n,d.name,d.strings,this,t):6===d.type&&(i=new L$1(n,this,t)),this.v.push(i),d=e[++r];}l!==(null==d?void 0:d.index)&&(n=C$1.nextNode(),l++);}return o}m(t){let i=0;for(const s of this.v)void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class S$2{constructor(t,i,s,e){var o;this.type=2,this._$AH=x$1,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cg=null===(o=null==e?void 0:e.isConnected)||void 0===o||o;}get _$AU(){var t,i;return null!==(i=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==i?i:this._$Cg}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===t.nodeType&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=E$1(this,t,i),d$1(t)?t===x$1||null==t||""===t?(this._$AH!==x$1&&this._$AR(),this._$AH=x$1):t!==this._$AH&&t!==T$1&&this.$(t):void 0!==t._$litType$?this.T(t):void 0!==t.nodeType?this.S(t):c$1(t)?this.M(t):this.$(t);}A(t,i=this._$AB){return this._$AA.parentNode.insertBefore(t,i)}S(t){this._$AH!==t&&(this._$AR(),this._$AH=this.A(t));}$(t){this._$AH!==x$1&&d$1(this._$AH)?this._$AA.nextSibling.data=t:this.S(h$2.createTextNode(t)),this._$AH=t;}T(t){var i;const{values:s,_$litType$:e}=t,o="number"==typeof e?this._$AC(t):(void 0===e.el&&(e.el=V$1.createElement(e.h,this.options)),e);if((null===(i=this._$AH)||void 0===i?void 0:i._$AD)===o)this._$AH.m(s);else {const t=new N$1(o,this),i=t.p(this.options);t.m(s),this.S(i),this._$AH=t;}}_$AC(t){let i=w$1.get(t.strings);return void 0===i&&w$1.set(t.strings,i=new V$1(t)),i}M(t){u$1(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const o of t)e===i.length?i.push(s=new S$2(this.A(r$4()),this.A(r$4()),this,this.options)):s=i[e],s._$AI(o),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){var s;for(null===(s=this._$AP)||void 0===s||s.call(this,!1,!0,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){var i;void 0===this._$AM&&(this._$Cg=t,null===(i=this._$AP)||void 0===i||i.call(this,t));}}class M$1{constructor(t,i,s,e,o){this.type=1,this._$AH=x$1,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=o,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=x$1;}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,i=this,s,e){const o=this.strings;let n=!1;if(void 0===o)t=E$1(this,t,i,0),n=!d$1(t)||t!==this._$AH&&t!==T$1,n&&(this._$AH=t);else {const e=t;let l,h;for(t=o[0],l=0;l<o.length-1;l++)h=E$1(this,e[s+l],i,l),h===T$1&&(h=this._$AH[l]),n||(n=!d$1(h)||h!==this._$AH[l]),h===x$1?t=x$1:t!==x$1&&(t+=(null!=h?h:"")+o[l+1]),this._$AH[l]=h;}n&&!e&&this.k(t);}k(t){t===x$1?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"");}}class k$1 extends M$1{constructor(){super(...arguments),this.type=3;}k(t){this.element[this.name]=t===x$1?void 0:t;}}class H$1 extends M$1{constructor(){super(...arguments),this.type=4;}k(t){t&&t!==x$1?this.element.setAttribute(this.name,""):this.element.removeAttribute(this.name);}}class I$1 extends M$1{constructor(t,i,s,e,o){super(t,i,s,e,o),this.type=5;}_$AI(t,i=this){var s;if((t=null!==(s=E$1(this,t,i,0))&&void 0!==s?s:x$1)===T$1)return;const e=this._$AH,o=t===x$1&&e!==x$1||t.capture!==e.capture||t.once!==e.once||t.passive!==e.passive,n=t!==x$1&&(e===x$1||o);o&&this.element.removeEventListener(this.name,this,e),n&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){var i,s;"function"==typeof this._$AH?this._$AH.call(null!==(s=null===(i=this.options)||void 0===i?void 0:i.host)&&void 0!==s?s:this.element,t):this._$AH.handleEvent(t);}}class L$1{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){E$1(this,t);}}null===(t$2=globalThis.litHtmlPlatformSupport)||void 0===t$2||t$2.call(globalThis,V$1,S$2),(null!==(i$2=globalThis.litHtmlVersions)&&void 0!==i$2?i$2:globalThis.litHtmlVersions=[]).push("2.0.0-rc.5");
+var t$3,i$3;const s$5=globalThis.trustedTypes,e$5=s$5?s$5.createPolicy("lit-html",{createHTML:t=>t}):void 0,o$6=`lit$${(Math.random()+"").slice(9)}$`,n$6="?"+o$6,l$2=`<${n$6}>`,h$3=document,r$5=(t="")=>h$3.createComment(t),d$1=t=>null===t||"object"!=typeof t&&"function"!=typeof t,u$1=Array.isArray,c$1=t=>{var i;return u$1(t)||"function"==typeof(null===(i=t)||void 0===i?void 0:i[Symbol.iterator])},v$1=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,a$1=/-->/g,f$1=/>/g,_$1=/>|[ 	\n\r](?:([^\s"'>=/]+)([ 	\n\r]*=[ 	\n\r]*(?:[^ 	\n\r"'`<>=]|("|')|))|$)/g,g$1=/'/g,m$1=/"/g,$$1=/^(?:script|style|textarea)$/i,T$1=Symbol.for("lit-noChange"),x$1=Symbol.for("lit-nothing"),w$1=new WeakMap,C$1=h$3.createTreeWalker(h$3,129,null,!1),P$1=(t,i)=>{const s=t.length-1,n=[];let h,r=2===i?"<svg>":"",d=v$1;for(let i=0;i<s;i++){const s=t[i];let e,u,c=-1,p=0;for(;p<s.length&&(d.lastIndex=p,u=d.exec(s),null!==u);)p=d.lastIndex,d===v$1?"!--"===u[1]?d=a$1:void 0!==u[1]?d=f$1:void 0!==u[2]?($$1.test(u[2])&&(h=RegExp("</"+u[2],"g")),d=_$1):void 0!==u[3]&&(d=_$1):d===_$1?">"===u[0]?(d=null!=h?h:v$1,c=-1):void 0===u[1]?c=-2:(c=d.lastIndex-u[2].length,e=u[1],d=void 0===u[3]?_$1:'"'===u[3]?m$1:g$1):d===m$1||d===g$1?d=_$1:d===a$1||d===f$1?d=v$1:(d=_$1,h=void 0);const y=d===_$1&&t[i+1].startsWith("/>")?" ":"";r+=d===v$1?s+l$2:c>=0?(n.push(e),s.slice(0,c)+"$lit$"+s.slice(c)+o$6+y):s+o$6+(-2===c?(n.push(void 0),i):y);}const u=r+(t[s]||"<?>")+(2===i?"</svg>":"");return [void 0!==e$5?e$5.createHTML(u):u,n]};class V$1{constructor({strings:t,_$litType$:i},e){let l;this.parts=[];let h=0,d=0;const u=t.length-1,c=this.parts,[v,a]=P$1(t,i);if(this.el=V$1.createElement(v,e),C$1.currentNode=this.el.content,2===i){const t=this.el.content,i=t.firstChild;i.remove(),t.append(...i.childNodes);}for(;null!==(l=C$1.nextNode())&&c.length<u;){if(1===l.nodeType){if(l.hasAttributes()){const t=[];for(const i of l.getAttributeNames())if(i.endsWith("$lit$")||i.startsWith(o$6)){const s=a[d++];if(t.push(i),void 0!==s){const t=l.getAttribute(s.toLowerCase()+"$lit$").split(o$6),i=/([.?@])?(.*)/.exec(s);c.push({type:1,index:h,name:i[2],strings:t,ctor:"."===i[1]?k$1:"?"===i[1]?H$1:"@"===i[1]?I$1:M$1});}else c.push({type:6,index:h});}for(const i of t)l.removeAttribute(i);}if($$1.test(l.tagName)){const t=l.textContent.split(o$6),i=t.length-1;if(i>0){l.textContent=s$5?s$5.emptyScript:"";for(let s=0;s<i;s++)l.append(t[s],r$5()),C$1.nextNode(),c.push({type:2,index:++h});l.append(t[i],r$5());}}}else if(8===l.nodeType)if(l.data===n$6)c.push({type:2,index:h});else {let t=-1;for(;-1!==(t=l.data.indexOf(o$6,t+1));)c.push({type:7,index:h}),t+=o$6.length-1;}h++;}}static createElement(t,i){const s=h$3.createElement("template");return s.innerHTML=t,s}}function E$1(t,i,s=t,e){var o,n,l,h;if(i===T$1)return i;let r=void 0!==e?null===(o=s._$Cl)||void 0===o?void 0:o[e]:s._$Cu;const u=d$1(i)?void 0:i._$litDirective$;return (null==r?void 0:r.constructor)!==u&&(null===(n=null==r?void 0:r._$AO)||void 0===n||n.call(r,!1),void 0===u?r=void 0:(r=new u(t),r._$AT(t,s,e)),void 0!==e?(null!==(l=(h=s)._$Cl)&&void 0!==l?l:h._$Cl=[])[e]=r:s._$Cu=r),void 0!==r&&(i=E$1(t,r._$AS(t,i.values),r,e)),i}class N$1{constructor(t,i){this.v=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}p(t){var i;const{el:{content:s},parts:e}=this._$AD,o=(null!==(i=null==t?void 0:t.creationScope)&&void 0!==i?i:h$3).importNode(s,!0);C$1.currentNode=o;let n=C$1.nextNode(),l=0,r=0,d=e[0];for(;void 0!==d;){if(l===d.index){let i;2===d.type?i=new S$3(n,n.nextSibling,this,t):1===d.type?i=new d.ctor(n,d.name,d.strings,this,t):6===d.type&&(i=new L$1(n,this,t)),this.v.push(i),d=e[++r];}l!==(null==d?void 0:d.index)&&(n=C$1.nextNode(),l++);}return o}m(t){let i=0;for(const s of this.v)void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class S$3{constructor(t,i,s,e){var o;this.type=2,this._$AH=x$1,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cg=null===(o=null==e?void 0:e.isConnected)||void 0===o||o;}get _$AU(){var t,i;return null!==(i=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==i?i:this._$Cg}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===t.nodeType&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=E$1(this,t,i),d$1(t)?t===x$1||null==t||""===t?(this._$AH!==x$1&&this._$AR(),this._$AH=x$1):t!==this._$AH&&t!==T$1&&this.$(t):void 0!==t._$litType$?this.T(t):void 0!==t.nodeType?this.S(t):c$1(t)?this.M(t):this.$(t);}A(t,i=this._$AB){return this._$AA.parentNode.insertBefore(t,i)}S(t){this._$AH!==t&&(this._$AR(),this._$AH=this.A(t));}$(t){this._$AH!==x$1&&d$1(this._$AH)?this._$AA.nextSibling.data=t:this.S(h$3.createTextNode(t)),this._$AH=t;}T(t){var i;const{values:s,_$litType$:e}=t,o="number"==typeof e?this._$AC(t):(void 0===e.el&&(e.el=V$1.createElement(e.h,this.options)),e);if((null===(i=this._$AH)||void 0===i?void 0:i._$AD)===o)this._$AH.m(s);else {const t=new N$1(o,this),i=t.p(this.options);t.m(s),this.S(i),this._$AH=t;}}_$AC(t){let i=w$1.get(t.strings);return void 0===i&&w$1.set(t.strings,i=new V$1(t)),i}M(t){u$1(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const o of t)e===i.length?i.push(s=new S$3(this.A(r$5()),this.A(r$5()),this,this.options)):s=i[e],s._$AI(o),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){var s;for(null===(s=this._$AP)||void 0===s||s.call(this,!1,!0,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){var i;void 0===this._$AM&&(this._$Cg=t,null===(i=this._$AP)||void 0===i||i.call(this,t));}}class M$1{constructor(t,i,s,e,o){this.type=1,this._$AH=x$1,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=o,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=x$1;}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,i=this,s,e){const o=this.strings;let n=!1;if(void 0===o)t=E$1(this,t,i,0),n=!d$1(t)||t!==this._$AH&&t!==T$1,n&&(this._$AH=t);else {const e=t;let l,h;for(t=o[0],l=0;l<o.length-1;l++)h=E$1(this,e[s+l],i,l),h===T$1&&(h=this._$AH[l]),n||(n=!d$1(h)||h!==this._$AH[l]),h===x$1?t=x$1:t!==x$1&&(t+=(null!=h?h:"")+o[l+1]),this._$AH[l]=h;}n&&!e&&this.k(t);}k(t){t===x$1?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"");}}class k$1 extends M$1{constructor(){super(...arguments),this.type=3;}k(t){this.element[this.name]=t===x$1?void 0:t;}}class H$1 extends M$1{constructor(){super(...arguments),this.type=4;}k(t){t&&t!==x$1?this.element.setAttribute(this.name,""):this.element.removeAttribute(this.name);}}class I$1 extends M$1{constructor(t,i,s,e,o){super(t,i,s,e,o),this.type=5;}_$AI(t,i=this){var s;if((t=null!==(s=E$1(this,t,i,0))&&void 0!==s?s:x$1)===T$1)return;const e=this._$AH,o=t===x$1&&e!==x$1||t.capture!==e.capture||t.once!==e.once||t.passive!==e.passive,n=t!==x$1&&(e===x$1||o);o&&this.element.removeEventListener(this.name,this,e),n&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){var i,s;"function"==typeof this._$AH?this._$AH.call(null!==(s=null===(i=this.options)||void 0===i?void 0:i.host)&&void 0!==s?s:this.element,t):this._$AH.handleEvent(t);}}class L$1{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){E$1(this,t);}}null===(t$3=globalThis.litHtmlPlatformSupport)||void 0===t$3||t$3.call(globalThis,V$1,S$3),(null!==(i$3=globalThis.litHtmlVersions)&&void 0!==i$3?i$3:globalThis.litHtmlVersions=[]).push("2.0.0-rc.5");
 
 /**
  * @license
@@ -3032,7 +3126,7 @@ var t$2,i$2;const s$3=globalThis.trustedTypes,e$3=s$3?s$3.createPolicy("lit-html
 
 const plusIcon = y`<svg class="icon" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>`;
 
-class EeFab extends StyleableMixin(NativeReflectorMixin(n$3)) {
+class EeFab extends CustomStylesMixin(StyleableMixin(NativeReflectorMixin(n$3))) {
   static get styles () {
     return [
       super.styles,
@@ -3066,7 +3160,7 @@ class EeFab extends StyleableMixin(NativeReflectorMixin(n$3)) {
 }
 tpeRegistry.register('ee-fab', EeFab);
 
-class EeFadeIn extends StyleableMixin(n$3) {
+class EeFadeIn extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -3110,7 +3204,7 @@ class EeFadeIn extends StyleableMixin(n$3) {
 }
 tpeRegistry.register('ee-fade-in', EeFadeIn);
 
-class EeToolbar extends StyleableMixin(n$3) {
+class EeToolbar extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -3176,7 +3270,7 @@ tpeRegistry.register('ee-toolbar', EeToolbar);
 const arrowback = y`<svg class="icon" height="24" viewBox="0 0 24 24" width="24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>`;
 const menu = y`<svg class="icon" height="24" viewBox="0 0 24 24" width="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>`;
 
-class EeHeader extends StyleableMixin(n$3) {
+class EeHeader extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -3207,7 +3301,8 @@ class EeHeader extends StyleableMixin(n$3) {
         }
 
         div[header-title], div[middle] {
-          display: block;
+          display: flex;
+          align-items: center;
         }
 
         div[header-title] h3,
@@ -3358,7 +3453,7 @@ class EeHeader extends StyleableMixin(n$3) {
 }
 tpeRegistry.register('ee-header', EeHeader);
 
-class EeNavBar extends StyleableMixin(n$3) {
+class EeNavBar extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -3468,7 +3563,7 @@ class EeNavBar extends StyleableMixin(n$3) {
 }
 tpeRegistry.register('ee-nav-bar', EeNavBar);
 
-class EeNetwork extends StyleableMixin(n$3) {
+class EeNetwork extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -3728,7 +3823,7 @@ class EeNetwork extends StyleableMixin(n$3) {
 }
 tpeRegistry.register('ee-network', EeNetwork);
 
-class EeRow extends StyleableMixin(n$3) {
+class EeRow extends CustomStylesMixin(StyleableMixin(n$3)) {
   
   static get styles () {
     return [
@@ -3833,7 +3928,7 @@ class EeRow extends StyleableMixin(n$3) {
 }
 tpeRegistry.register('ee-row', EeRow);
 
-class EeSnackBar extends StyleableMixin(n$3) {
+class EeSnackBar extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -3938,7 +4033,7 @@ tpeRegistry.register('ee-snack-bar', EeSnackBar);
 // https://github.com/Victor-Bernabe/lit-media-query/blob/master/lit-media-query.js
 
 // eslint-disable-next-line new-cap
-class EeTable extends StyleableMixin(n$3) {
+class EeTable extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles || [],
@@ -4020,7 +4115,7 @@ class EeTable extends StyleableMixin(n$3) {
 }
 tpeRegistry.register('ee-table', EeTable);
 
-class EeTabs extends StyleableMixin(n$3) {
+class EeTabs extends CustomStylesMixin(StyleableMixin(n$3)) {
   static get styles () {
     return [
       super.styles,
@@ -4164,7 +4259,7 @@ class EeTabs extends StyleableMixin(n$3) {
   }
 
   _allTabs () {
-    return this.shadowRoot.querySelector('slot#tabs').assignedElements()
+    return this.tabsSlot.assignedElements()
   }
 
   _workoutHash () {
@@ -4179,6 +4274,7 @@ class EeTabs extends StyleableMixin(n$3) {
 
   firstUpdated () {
     super.firstUpdated();
+    this.tabsSlot = this.shadowRoot.querySelector('slot#tabs');
 
     const tab = this._workoutHash();
     this.select(tab, false);
@@ -4265,7 +4361,7 @@ tpeRegistry.register('ee-tabs', EeTabs);
 // # en-form
 
 /* globals customElements CustomEvent */
-class EnForm extends StyleableMixin(n$3) {
+class EnForm extends CustomStylesMixin(StyleableMixin(n$3)) {
   get reflectProperties () {
     return [...super.reflectProperties, ...formElement]
   }
@@ -4994,7 +5090,7 @@ class EnForm extends StyleableMixin(n$3) {
 }
 tpeRegistry.register('ee-form', EnForm);
 
-class EnInputRange extends FormElementMixin(NativeValidatorMixin(StyleableMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
+class EnInputRange extends CustomStylesMixin(FormElementMixin(NativeValidatorMixin(StyleableMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3))))))) {
   static get styles () {
     return [
       super.styles,
@@ -5067,7 +5163,7 @@ class EnInputRange extends FormElementMixin(NativeValidatorMixin(StyleableMixin(
 }
 tpeRegistry.register('ee-input-range', EnInputRange);
 
-class NnButton extends FormElementMixin(NativeValidatorMixin(StyleableMixin(NativeReflectorMixin(n$3)))) {
+class NnButton extends CustomStylesMixin(FormElementMixin(NativeValidatorMixin(StyleableMixin(NativeReflectorMixin(n$3))))) {
   get skipAttributes () {
     return [...super.skipAttributes, 'form']
   }
@@ -5108,7 +5204,7 @@ class NnButton extends FormElementMixin(NativeValidatorMixin(StyleableMixin(Nati
 }
 tpeRegistry.register('nn-button', NnButton);
 
-class NnInputButton extends FormElementMixin(NativeValidatorMixin(InputMixin(NativeReflectorMixin(n$3)))) {
+class NnInputButton extends CustomStylesMixin(FormElementMixin(NativeValidatorMixin(InputMixin(NativeReflectorMixin(n$3))))) {
   render () {
     return y`
       <input type="button" id="native">
@@ -5125,12 +5221,12 @@ tpeRegistry.register('nn-input-button', NnInputButton);
 
 // This element is a thin wrap to `<input type=text`>.
 
-class NnInputText extends FormElementMixin(NativeValidatorMixin(StyleableMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
+class NnInputText extends CustomStylesMixin(FormElementMixin(NativeValidatorMixin(StyleableMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3))))))) {
   render () {
     return y`
       ${this.ifLabelBefore}
       ${this.ifValidationMessageBefore}
-      <input type="${this.inputType || 'text'}" id="native" real-time-event="input" >
+      <input type="${this.inputType}" id="native" real-time-event="input" >
       ${this.ifValidationMessageAfter}
       ${this.ifLabelAfter}
       <slot id="datalist-slot" name="datalist"></slot>
@@ -5140,11 +5236,13 @@ class NnInputText extends FormElementMixin(NativeValidatorMixin(StyleableMixin(L
   constructor () {
     super();
     this._boundKeyEventListener = this._eventListener.bind(this);
+    this.inputType = 'text';
   }
 
   static get properties () {
     return {
-      submitOnEnter: { type: Boolean, attribute: 'submit-on-enter' }
+      submitOnEnter: { type: Boolean, attribute: 'submit-on-enter' },
+      inputType: { type: String }
     }
   }
 
@@ -5303,12 +5401,12 @@ tpeRegistry.register('nn-input-number', NnInputNumber);
 class NnInputPassword extends NnInputText {
   constructor () {
     super();
-    this.inputType ='password';
+    this.inputType = 'password';
   }
 }
 tpeRegistry.register('nn-input-password', NnInputPassword);
 
-class NnInputRadio extends FormElementMixin(NativeValidatorMixin(LabelsMixin(StyleableMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
+class NnInputRadio extends CustomStylesMixin(FormElementMixin(NativeValidatorMixin(LabelsMixin(StyleableMixin(InputMixin(NativeReflectorMixin(n$3))))))) {
   render () {
     
     return y`
@@ -5363,7 +5461,7 @@ class NnInputSearch extends NnInputText {
 }
 tpeRegistry.register('nn-input-search', NnInputSearch);
 
-class NnInputSubmit extends FormElementMixin(NativeValidatorMixin(InputMixin(NativeReflectorMixin(n$3)))) {
+class NnInputSubmit extends CustomStylesMixin(FormElementMixin(NativeValidatorMixin(InputMixin(NativeReflectorMixin(n$3))))) {
   render () {
     
     return y`
@@ -5411,7 +5509,7 @@ class NnInputWeek extends NnInputText {
 }
 tpeRegistry.register('nn-input-week', NnInputWeek);
 
-class NnMeter extends StyleableMixin(LabelsMixin(NativeReflectorMixin(n$3))) {
+class NnMeter extends CustomStylesMixin(StyleableMixin(LabelsMixin(NativeReflectorMixin(n$3)))) {
   get reflectProperties () {
     return [...super.reflectProperties, ...meterElement]
   }
@@ -5429,7 +5527,7 @@ class NnMeter extends StyleableMixin(LabelsMixin(NativeReflectorMixin(n$3))) {
 }
 tpeRegistry.register('nn-meter', NnMeter);
 
-class NnProgress extends StyleableMixin(LabelsMixin(NativeReflectorMixin(n$3))) {
+class NnProgress extends CustomStylesMixin(StyleableMixin(LabelsMixin(NativeReflectorMixin(n$3)))) {
   static get properties () {
     return {
     }
@@ -5489,7 +5587,7 @@ class NnProgress extends StyleableMixin(LabelsMixin(NativeReflectorMixin(n$3))) 
 }
 tpeRegistry.register('nn-progress', NnProgress);
 
-class NnSelect extends FormElementMixin(NativeValidatorMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3))))) {
+class NnSelect extends CustomStylesMixin(FormElementMixin(NativeValidatorMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
   get reflectProperties () {
     return [...super.reflectProperties, ...selectElement]
   }
@@ -5535,7 +5633,7 @@ class NnSelect extends FormElementMixin(NativeValidatorMixin(LabelsMixin(InputMi
 }
 tpeRegistry.register('nn-select', NnSelect);
 
-class NnTextarea extends StyleableMixin(FormElementMixin(NativeValidatorMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3)))))) {
+class NnTextarea extends CustomStylesMixin(StyleableMixin(FormElementMixin(NativeValidatorMixin(LabelsMixin(InputMixin(NativeReflectorMixin(n$3))))))) {
   get reflectProperties () {
     return [...super.reflectProperties, ...textareaElement]
   }
@@ -5554,31 +5652,44 @@ class NnTextarea extends StyleableMixin(FormElementMixin(NativeValidatorMixin(La
 
 tpeRegistry.register('nn-textarea', NnTextarea);
 
-/**
- * @license
- * Copyright 2019 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-const t$3=window.ShadowRoot&&(void 0===window.ShadyCSS||window.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,e$4=Symbol(),n$5=new Map;class s$4{constructor(t,n){if(this._$cssResult$=!0,n!==e$4)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t;}get styleSheet(){let e=n$5.get(this.cssText);return t$3&&void 0===e&&(n$5.set(this.cssText,e=new CSSStyleSheet),e.replaceSync(this.cssText)),e}toString(){return this.cssText}}const o$5=t=>new s$4("string"==typeof t?t:t+"",e$4),r$5=(t,...n)=>{const o=1===t.length?t[0]:n.reduce(((e,n,s)=>e+(t=>{if(!0===t._$cssResult$)return t.cssText;if("number"==typeof t)return t;throw Error("Value passed to 'css' function must be a 'css' function result: "+t+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(n)+t[s+1]),t[0]);return new s$4(o,e$4)},i$3=(e,n)=>{t$3?e.adoptedStyleSheets=n.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet)):n.forEach((t=>{const n=document.createElement("style"),s=window.litNonce;void 0!==s&&n.setAttribute("nonce",s),n.textContent=t.cssText,e.appendChild(n);}));},S$3=t$3?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const n of t.cssRules)e+=n.cssText;return o$5(e)})(t):t;
+const AddHasValueAttributeMixin = (base) => {
+  return class Base extends base {
+    _observeInput (e) {
+      const target = e.currentTarget;
+      this.toggleAttribute('has-value', __hasValue(target.value));
+    }
 
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */var s$5,e$5;const r$6={toAttribute(t,i){switch(i){case Boolean:t=t?"":null;break;case Object:case Array:t=null==t?t:JSON.stringify(t);}return t},fromAttribute(t,i){let s=t;switch(i){case Boolean:s=null!==t;break;case Number:s=null===t?null:Number(t);break;case Object:case Array:try{s=JSON.parse(t);}catch(t){s=null;}}return s}},h$3=(t,i)=>i!==t&&(i==i||t==t),o$6={attribute:!0,type:String,converter:r$6,reflect:!1,hasChanged:h$3};class n$6 extends HTMLElement{constructor(){super(),this._$Et=new Map,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Ei=null,this.o();}static addInitializer(t){var i;null!==(i=this.l)&&void 0!==i||(this.l=[]),this.l.push(t);}static get observedAttributes(){this.finalize();const t=[];return this.elementProperties.forEach(((i,s)=>{const e=this._$Eh(s,i);void 0!==e&&(this._$Eu.set(e,s),t.push(e));})),t}static createProperty(t,i=o$6){if(i.state&&(i.attribute=!1),this.finalize(),this.elementProperties.set(t,i),!i.noAccessor&&!this.prototype.hasOwnProperty(t)){const s="symbol"==typeof t?Symbol():"__"+t,e=this.getPropertyDescriptor(t,s,i);void 0!==e&&Object.defineProperty(this.prototype,t,e);}}static getPropertyDescriptor(t,i,s){return {get(){return this[i]},set(e){const r=this[t];this[i]=e,this.requestUpdate(t,r,s);},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)||o$6}static finalize(){if(this.hasOwnProperty("finalized"))return !1;this.finalized=!0;const t=Object.getPrototypeOf(this);if(t.finalize(),this.elementProperties=new Map(t.elementProperties),this._$Eu=new Map,this.hasOwnProperty("properties")){const t=this.properties,i=[...Object.getOwnPropertyNames(t),...Object.getOwnPropertySymbols(t)];for(const s of i)this.createProperty(s,t[s]);}return this.elementStyles=this.finalizeStyles(this.styles),!0}static finalizeStyles(i){const s=[];if(Array.isArray(i)){const e=new Set(i.flat(1/0).reverse());for(const i of e)s.unshift(S$3(i));}else void 0!==i&&s.push(S$3(i));return s}static _$Eh(t,i){const s=i.attribute;return !1===s?void 0:"string"==typeof s?s:"string"==typeof t?t.toLowerCase():void 0}o(){var t;this._$Ev=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$Ep(),this.requestUpdate(),null===(t=this.constructor.l)||void 0===t||t.forEach((t=>t(this)));}addController(t){var i,s;(null!==(i=this._$Em)&&void 0!==i?i:this._$Em=[]).push(t),void 0!==this.renderRoot&&this.isConnected&&(null===(s=t.hostConnected)||void 0===s||s.call(t));}removeController(t){var i;null===(i=this._$Em)||void 0===i||i.splice(this._$Em.indexOf(t)>>>0,1);}_$Ep(){this.constructor.elementProperties.forEach(((t,i)=>{this.hasOwnProperty(i)&&(this._$Et.set(i,this[i]),delete this[i]);}));}createRenderRoot(){var t;const s=null!==(t=this.shadowRoot)&&void 0!==t?t:this.attachShadow(this.constructor.shadowRootOptions);return i$3(s,this.constructor.elementStyles),s}connectedCallback(){var t;void 0===this.renderRoot&&(this.renderRoot=this.createRenderRoot()),this.enableUpdating(!0),null===(t=this._$Em)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostConnected)||void 0===i?void 0:i.call(t)}));}enableUpdating(t){}disconnectedCallback(){var t;null===(t=this._$Em)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostDisconnected)||void 0===i?void 0:i.call(t)}));}attributeChangedCallback(t,i,s){this._$AK(t,s);}_$Eg(t,i,s=o$6){var e,h;const n=this.constructor._$Eh(t,s);if(void 0!==n&&!0===s.reflect){const o=(null!==(h=null===(e=s.converter)||void 0===e?void 0:e.toAttribute)&&void 0!==h?h:r$6.toAttribute)(i,s.type);this._$Ei=t,null==o?this.removeAttribute(n):this.setAttribute(n,o),this._$Ei=null;}}_$AK(t,i){var s,e,h;const o=this.constructor,n=o._$Eu.get(t);if(void 0!==n&&this._$Ei!==n){const t=o.getPropertyOptions(n),l=t.converter,a=null!==(h=null!==(e=null===(s=l)||void 0===s?void 0:s.fromAttribute)&&void 0!==e?e:"function"==typeof l?l:null)&&void 0!==h?h:r$6.fromAttribute;this._$Ei=n,this[n]=a(i,t.type),this._$Ei=null;}}requestUpdate(t,i,s){let e=!0;void 0!==t&&(((s=s||this.constructor.getPropertyOptions(t)).hasChanged||h$3)(this[t],i)?(this._$AL.has(t)||this._$AL.set(t,i),!0===s.reflect&&this._$Ei!==t&&(void 0===this._$ES&&(this._$ES=new Map),this._$ES.set(t,s))):e=!1),!this.isUpdatePending&&e&&(this._$Ev=this._$EC());}async _$EC(){this.isUpdatePending=!0;try{await this._$Ev;}catch(t){Promise.reject(t);}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){var t;if(!this.isUpdatePending)return;this.hasUpdated,this._$Et&&(this._$Et.forEach(((t,i)=>this[i]=t)),this._$Et=void 0);let i=!1;const s=this._$AL;try{i=this.shouldUpdate(s),i?(this.willUpdate(s),null===(t=this._$Em)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostUpdate)||void 0===i?void 0:i.call(t)})),this.update(s)):this._$ET();}catch(t){throw i=!1,this._$ET(),t}i&&this._$AE(s);}willUpdate(t){}_$AE(t){var i;null===(i=this._$Em)||void 0===i||i.forEach((t=>{var i;return null===(i=t.hostUpdated)||void 0===i?void 0:i.call(t)})),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t);}_$ET(){this._$AL=new Map,this.isUpdatePending=!1;}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$Ev}shouldUpdate(t){return !0}update(t){void 0!==this._$ES&&(this._$ES.forEach(((t,i)=>this._$Eg(i,this[i],t))),this._$ES=void 0),this._$ET();}updated(t){}firstUpdated(t){}}n$6.finalized=!0,n$6.elementProperties=new Map,n$6.elementStyles=[],n$6.shadowRootOptions={mode:"open"},null===(s$5=globalThis.reactiveElementPolyfillSupport)||void 0===s$5||s$5.call(globalThis,{ReactiveElement:n$6}),(null!==(e$5=globalThis.reactiveElementVersions)&&void 0!==e$5?e$5:globalThis.reactiveElementVersions=[]).push("1.0.0");
+    _observeFocus (e) {
+      this.toggleAttribute('has-focus', true);
+    }
 
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-var t$4,i$4;const s$6=globalThis.trustedTypes,e$6=s$6?s$6.createPolicy("lit-html",{createHTML:t=>t}):void 0,o$7=`lit$${(Math.random()+"").slice(9)}$`,n$7="?"+o$7,l$4=`<${n$7}>`,h$4=document,r$7=(t="")=>h$4.createComment(t),d$2=t=>null===t||"object"!=typeof t&&"function"!=typeof t,u$2=Array.isArray,v$2=t=>{var i;return u$2(t)||"function"==typeof(null===(i=t)||void 0===i?void 0:i[Symbol.iterator])},c$2=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,a$2=/-->/g,f$2=/>/g,_$2=/>|[ 	\n\r](?:([^\s"'>=/]+)([ 	\n\r]*=[ 	\n\r]*(?:[^ 	\n\r"'`<>=]|("|')|))|$)/g,g$2=/'/g,m$2=/"/g,$$2=/^(?:script|style|textarea)$/i,p$1=t=>(i,...s)=>({_$litType$:t,strings:i,values:s}),y$1=p$1(1),T$2=Symbol.for("lit-noChange"),x$2=Symbol.for("lit-nothing"),w$2=new WeakMap,A$1=(t,i,s)=>{var e,o;const n=null!==(e=null==s?void 0:s.renderBefore)&&void 0!==e?e:i;let l=n._$litPart$;if(void 0===l){const t=null!==(o=null==s?void 0:s.renderBefore)&&void 0!==o?o:null;n._$litPart$=l=new S$4(i.insertBefore(r$7(),t),t,void 0,null!=s?s:{});}return l._$AI(t),l},C$2=h$4.createTreeWalker(h$4,129,null,!1),P$2=(t,i)=>{const s=t.length-1,n=[];let h,r=2===i?"<svg>":"",d=c$2;for(let i=0;i<s;i++){const s=t[i];let e,u,v=-1,p=0;for(;p<s.length&&(d.lastIndex=p,u=d.exec(s),null!==u);)p=d.lastIndex,d===c$2?"!--"===u[1]?d=a$2:void 0!==u[1]?d=f$2:void 0!==u[2]?($$2.test(u[2])&&(h=RegExp("</"+u[2],"g")),d=_$2):void 0!==u[3]&&(d=_$2):d===_$2?">"===u[0]?(d=null!=h?h:c$2,v=-1):void 0===u[1]?v=-2:(v=d.lastIndex-u[2].length,e=u[1],d=void 0===u[3]?_$2:'"'===u[3]?m$2:g$2):d===m$2||d===g$2?d=_$2:d===a$2||d===f$2?d=c$2:(d=_$2,h=void 0);const y=d===_$2&&t[i+1].startsWith("/>")?" ":"";r+=d===c$2?s+l$4:v>=0?(n.push(e),s.slice(0,v)+"$lit$"+s.slice(v)+o$7+y):s+o$7+(-2===v?(n.push(void 0),i):y);}const u=r+(t[s]||"<?>")+(2===i?"</svg>":"");return [void 0!==e$6?e$6.createHTML(u):u,n]};class V$2{constructor({strings:t,_$litType$:i},e){let l;this.parts=[];let h=0,d=0;const u=t.length-1,v=this.parts,[c,a]=P$2(t,i);if(this.el=V$2.createElement(c,e),C$2.currentNode=this.el.content,2===i){const t=this.el.content,i=t.firstChild;i.remove(),t.append(...i.childNodes);}for(;null!==(l=C$2.nextNode())&&v.length<u;){if(1===l.nodeType){if(l.hasAttributes()){const t=[];for(const i of l.getAttributeNames())if(i.endsWith("$lit$")||i.startsWith(o$7)){const s=a[d++];if(t.push(i),void 0!==s){const t=l.getAttribute(s.toLowerCase()+"$lit$").split(o$7),i=/([.?@])?(.*)/.exec(s);v.push({type:1,index:h,name:i[2],strings:t,ctor:"."===i[1]?k$2:"?"===i[1]?H$2:"@"===i[1]?I$2:M$2});}else v.push({type:6,index:h});}for(const i of t)l.removeAttribute(i);}if($$2.test(l.tagName)){const t=l.textContent.split(o$7),i=t.length-1;if(i>0){l.textContent=s$6?s$6.emptyScript:"";for(let s=0;s<i;s++)l.append(t[s],r$7()),C$2.nextNode(),v.push({type:2,index:++h});l.append(t[i],r$7());}}}else if(8===l.nodeType)if(l.data===n$7)v.push({type:2,index:h});else {let t=-1;for(;-1!==(t=l.data.indexOf(o$7,t+1));)v.push({type:7,index:h}),t+=o$7.length-1;}h++;}}static createElement(t,i){const s=h$4.createElement("template");return s.innerHTML=t,s}}function E$2(t,i,s=t,e){var o,n,l,h;if(i===T$2)return i;let r=void 0!==e?null===(o=s._$Cl)||void 0===o?void 0:o[e]:s._$Cu;const u=d$2(i)?void 0:i._$litDirective$;return (null==r?void 0:r.constructor)!==u&&(null===(n=null==r?void 0:r._$AO)||void 0===n||n.call(r,!1),void 0===u?r=void 0:(r=new u(t),r._$AT(t,s,e)),void 0!==e?(null!==(l=(h=s)._$Cl)&&void 0!==l?l:h._$Cl=[])[e]=r:s._$Cu=r),void 0!==r&&(i=E$2(t,r._$AS(t,i.values),r,e)),i}class N$2{constructor(t,i){this.v=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}p(t){var i;const{el:{content:s},parts:e}=this._$AD,o=(null!==(i=null==t?void 0:t.creationScope)&&void 0!==i?i:h$4).importNode(s,!0);C$2.currentNode=o;let n=C$2.nextNode(),l=0,r=0,d=e[0];for(;void 0!==d;){if(l===d.index){let i;2===d.type?i=new S$4(n,n.nextSibling,this,t):1===d.type?i=new d.ctor(n,d.name,d.strings,this,t):6===d.type&&(i=new L$2(n,this,t)),this.v.push(i),d=e[++r];}l!==(null==d?void 0:d.index)&&(n=C$2.nextNode(),l++);}return o}m(t){let i=0;for(const s of this.v)void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class S$4{constructor(t,i,s,e){var o;this.type=2,this._$AH=x$2,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cg=null===(o=null==e?void 0:e.isConnected)||void 0===o||o;}get _$AU(){var t,i;return null!==(i=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==i?i:this._$Cg}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===t.nodeType&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=E$2(this,t,i),d$2(t)?t===x$2||null==t||""===t?(this._$AH!==x$2&&this._$AR(),this._$AH=x$2):t!==this._$AH&&t!==T$2&&this.$(t):void 0!==t._$litType$?this.T(t):void 0!==t.nodeType?this.S(t):v$2(t)?this.M(t):this.$(t);}A(t,i=this._$AB){return this._$AA.parentNode.insertBefore(t,i)}S(t){this._$AH!==t&&(this._$AR(),this._$AH=this.A(t));}$(t){this._$AH!==x$2&&d$2(this._$AH)?this._$AA.nextSibling.data=t:this.S(h$4.createTextNode(t)),this._$AH=t;}T(t){var i;const{values:s,_$litType$:e}=t,o="number"==typeof e?this._$AC(t):(void 0===e.el&&(e.el=V$2.createElement(e.h,this.options)),e);if((null===(i=this._$AH)||void 0===i?void 0:i._$AD)===o)this._$AH.m(s);else {const t=new N$2(o,this),i=t.p(this.options);t.m(s),this.S(i),this._$AH=t;}}_$AC(t){let i=w$2.get(t.strings);return void 0===i&&w$2.set(t.strings,i=new V$2(t)),i}M(t){u$2(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const o of t)e===i.length?i.push(s=new S$4(this.A(r$7()),this.A(r$7()),this,this.options)):s=i[e],s._$AI(o),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){var s;for(null===(s=this._$AP)||void 0===s||s.call(this,!1,!0,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){var i;void 0===this._$AM&&(this._$Cg=t,null===(i=this._$AP)||void 0===i||i.call(this,t));}}class M$2{constructor(t,i,s,e,o){this.type=1,this._$AH=x$2,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=o,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=x$2;}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,i=this,s,e){const o=this.strings;let n=!1;if(void 0===o)t=E$2(this,t,i,0),n=!d$2(t)||t!==this._$AH&&t!==T$2,n&&(this._$AH=t);else {const e=t;let l,h;for(t=o[0],l=0;l<o.length-1;l++)h=E$2(this,e[s+l],i,l),h===T$2&&(h=this._$AH[l]),n||(n=!d$2(h)||h!==this._$AH[l]),h===x$2?t=x$2:t!==x$2&&(t+=(null!=h?h:"")+o[l+1]),this._$AH[l]=h;}n&&!e&&this.k(t);}k(t){t===x$2?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"");}}class k$2 extends M$2{constructor(){super(...arguments),this.type=3;}k(t){this.element[this.name]=t===x$2?void 0:t;}}class H$2 extends M$2{constructor(){super(...arguments),this.type=4;}k(t){t&&t!==x$2?this.element.setAttribute(this.name,""):this.element.removeAttribute(this.name);}}class I$2 extends M$2{constructor(t,i,s,e,o){super(t,i,s,e,o),this.type=5;}_$AI(t,i=this){var s;if((t=null!==(s=E$2(this,t,i,0))&&void 0!==s?s:x$2)===T$2)return;const e=this._$AH,o=t===x$2&&e!==x$2||t.capture!==e.capture||t.once!==e.once||t.passive!==e.passive,n=t!==x$2&&(e===x$2||o);o&&this.element.removeEventListener(this.name,this,e),n&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){var i,s;"function"==typeof this._$AH?this._$AH.call(null!==(s=null===(i=this.options)||void 0===i?void 0:i.host)&&void 0!==s?s:this.element,t):this._$AH.handleEvent(t);}}class L$2{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){E$2(this,t);}}null===(t$4=globalThis.litHtmlPolyfillSupport)||void 0===t$4||t$4.call(globalThis,V$2,S$4),(null!==(i$4=globalThis.litHtmlVersions)&&void 0!==i$4?i$4:globalThis.litHtmlVersions=[]).push("2.0.0");
+    _observeBlur (e) {
+      this.toggleAttribute('has-focus', false);
+    }
 
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */var l$5,o$8,r$8;class n$8 extends n$6{constructor(){super(...arguments),this.renderOptions={host:this},this._$Dt=void 0;}createRenderRoot(){var t,e;const i=super.createRenderRoot();return null!==(t=(e=this.renderOptions).renderBefore)&&void 0!==t||(e.renderBefore=i.firstChild),i}update(t){const i=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Dt=A$1(i,this.renderRoot,this.renderOptions);}connectedCallback(){var t;super.connectedCallback(),null===(t=this._$Dt)||void 0===t||t.setConnected(!0);}disconnectedCallback(){var t;super.disconnectedCallback(),null===(t=this._$Dt)||void 0===t||t.setConnected(!1);}render(){return T$2}}n$8.finalized=!0,n$8._$litElement$=!0,null===(l$5=globalThis.litElementHydrateSupport)||void 0===l$5||l$5.call(globalThis,{LitElement:n$8}),null===(o$8=globalThis.litElementPolyfillSupport)||void 0===o$8||o$8.call(globalThis,{LitElement:n$8});(null!==(r$8=globalThis.litElementVersions)&&void 0!==r$8?r$8:globalThis.litElementVersions=[]).push("3.0.0");
+    afterSettingProperty (prop, newValue) {
+      super.afterSettingProperty();
+
+      if (prop === 'value') {
+        this.toggleAttribute('has-value', __hasValue(newValue));
+      }
+    }
+
+    firstUpdated () {
+      super.firstUpdated();
+
+      this.native.addEventListener('input', this._observeInput.bind(this));
+      this.native.addEventListener('focus', this._observeFocus.bind(this));
+      this.native.addEventListener('blur', this._observeBlur.bind(this));
+
+      this.toggleAttribute('has-value', __hasValue(this.value));
+    }
+  }
+};
+
+function __hasValue (v) {
+  return v !== 'undefined' && v !== 'null' && v !== ''
+}
 
 // TPE Material Theme
 // ==================
@@ -5625,7 +5736,7 @@ const Shared = (base) => {
     static get stylePatterns () {
       return {
         // This adds a "*" character after the label for input fields that have the required attribute present.
-        requiredLabelAsterisk: r$5`
+        requiredLabelAsterisk: r`
           :host([required][label]) label div#label-text::after {
             content: '*';
             padding-left: 2px;
@@ -5633,7 +5744,7 @@ const Shared = (base) => {
           }
         `,
         // Changes elevation on mouse hover
-        hoverStyle: r$5`
+        hoverStyle: r`
           :host(:hover) {
             --mat-theme-box-shadow: var(--mat-theme-box-shadow2);
           }
@@ -5643,7 +5754,7 @@ const Shared = (base) => {
           }
         `,
         // Styles can be adjusted on focused elements.
-        focusStyle: r$5`
+        focusStyle: r`
           :host([has-focus]), :host([has-focus][outlined]) {
             --mat-theme-border: 2px solid var(--mat-primary-color);
             --mat-label-color: var(--mat-primary-color);
@@ -5655,7 +5766,7 @@ const Shared = (base) => {
         `,
         // Text input field specific material implementation. This template is
         // responsible for the default, dense and outlined styles. (Material Text Fields)[https://material.io/components/text-fields#specs]
-        inputField: r$5`
+        inputField: r`
           :host {
             position: relative;
             padding: 0 12px;
@@ -5736,7 +5847,7 @@ const Shared = (base) => {
         `,
 
         // Base style for input labels.
-        inputLabel: r$5`
+        inputLabel: r`
            label {
             position: absolute;
             display: inline-flex;
@@ -5768,7 +5879,7 @@ const Shared = (base) => {
         `,
         // When applicable (i.e. text input fields), `floatingLabel` should be
         // used to enable the typical mateiral design label animation.
-        floatingLabel: r$5`
+        floatingLabel: r`
           :host([has-value]) label,
           #native:focus ~ label,
           #native:placeholder-shown ~ label {
@@ -5794,7 +5905,7 @@ const Shared = (base) => {
         // Alternative label style, fixed in the floating position, useful in
         // cases where the default position might clash with native features,
         // like the date input placeholder text.
-        fixedLabel: r$5`
+        fixedLabel: r`
           label, #native:focus ~ label,
           :host([has-value]) label,
           #native:placeholder-shown ~ label {
@@ -5814,7 +5925,7 @@ const Shared = (base) => {
 
         `,
         // Styling fo the error messages for the input fields.
-        errorMessage: r$5`
+        errorMessage: r`
           span.error-message {
             position: absolute;
             bottom: 0;
@@ -5825,14 +5936,16 @@ const Shared = (base) => {
             line-height: 0;
           }
 
+          :host(:not([disabled])[invalid]) span.error-message,
           :host(:not([disabled])) #native:invalid ~ span.error-message {
             opacity: 1;
+            line-height: normal;
           }
         `,
         // Auxiliary style that will hide the native element, for cases in which
         // the broser style is not flexible enough for material design
         // implementation, as is the case for checkboxes and radio inputs.
-        hideNativeWidget: r$5`
+        hideNativeWidget: r`
           input {
             position: unset;
             position: absolute;
@@ -5848,7 +5961,7 @@ const Shared = (base) => {
     static get styles () {
       return [
         super.styles || [],
-        r$5`
+        r`
           @-webkit-keyframes fadeIn {
             0%   { opacity: 0; }
             100% { opacity: 1; }
@@ -5945,7 +6058,87 @@ class EeAutocompleteInputSpansMaterial extends Shared(EeAutocompleteInputSpans) 
   static get styles () {
     return [
       super.styles,
-      r$5`
+      super.stylePatterns.inputField,
+      super.stylePatterns.inputLabel,
+      super.stylePatterns.floatingLabel,
+      super.stylePatterns.hoverStyle,
+      super.stylePatterns.focusStyle,
+      super.stylePatterns.errorMessage,
+      super.stylePatterns.requiredLabelAsterisk,
+      r`
+        :host label {
+          transform: translateY(calc(var(--half-height) / -1)) scale(0.8);
+          transform-origin: 0 0;
+          transition: transform 0.1s ease-in-out, background 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        :host([dense]) #ta {
+            padding: var(--mat-form-element-padding, 14px 10px 0);
+          }
+
+          :host([outlined]) {
+            --mat-background: white;
+            --mat-theme-border: 2px solid #ccc;
+          }
+
+          :host([outlined]) #ta {
+            border-bottom: unset;
+            border: var(--mat-input-border, var(--mat-theme-border));
+            border-radius: var(--mat-input-border-radius, 4px);
+          }
+
+          #ta {
+            box-sizing: border-box;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            box-sizing: border-box;
+            display: block;
+            border-radius: var(--mat-input-border-radius, 4px 4px 0 0);
+            border-width: 0;
+            border-style: solid;
+            border-color: transparent;
+            border-bottom: var(--mat-input-border, var(--mat-theme-border));
+            color: var(--mat-input-color, inherit);
+            background-color: var(--mat-background, #eee);
+            width: 100%;
+            font-size: 14px;
+            padding:  var(--mat-form-element-padding, 20px 16px 0);
+            height: var(--mat-form-element-height);
+            box-shadow: var(--mat-theme-box-shadow);
+          }
+
+          #ta:focus,
+          #ta:active {
+            outline: none
+          }
+
+          #ta::selection {
+            background-color: var(--mat-background-dark);
+          }
+
+          :host(:not([disabled])) #ta:invalid {
+            background-color: var(--mat-error-color);
+            color: var(--mat-error-text);
+            border-color: var(--mat-error-text);
+          }
+
+          #ta:disabled {
+            filter: saturate(0);
+            opacity: 0.85;
+          }
+
+          #ta:disabled:hover {
+            background-color: initial !important;
+          }
+
+          #list {
+            align-items: baseline;
+          }
+
+          #list > span {
+            height: min-content;
+          }
       `
     ]
   }
@@ -5982,7 +6175,7 @@ class NnInputCheckboxMaterial extends Shared(NnInputCheckbox) {
       super.stylePatterns.errorMessage,
       super.stylePatterns.hideNativeWidget,
       super.stylePatterns.requiredLabelAsterisk,
-      r$5`
+      r`
         :host {
           display: block;
           position: relative;
@@ -6101,7 +6294,7 @@ class EeAutocompleteItemCountryMaterial extends Shared(EeAutocompleteItemCountry
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6113,7 +6306,7 @@ class EeAutocompleteItemCountryViewMaterial extends Shared(EeAutocompleteItemCou
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6125,7 +6318,7 @@ class EeAutocompleteItemEmailMaterial extends Shared(EeAutocompleteItemEmail) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6137,7 +6330,7 @@ class EeAutocompleteItemEmailViewMaterial extends Shared(EeAutocompleteItemEmail
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6149,7 +6342,7 @@ class EeAutocompleteItemLiMaterial extends Shared(EeAutocompleteItemLi) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6161,7 +6354,7 @@ class EeAutocompleteItemLiViewMaterial extends Shared(EeAutocompleteItemLiView) 
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6173,7 +6366,7 @@ class EeAutocompleteMaterial extends Shared(EeAutocomplete) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6185,7 +6378,7 @@ class EeCellMaterial extends Shared(EeCell) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
         :host {
           display: flex;
         }
@@ -6201,7 +6394,7 @@ class EeDrawerMaterial extends Shared(EeDrawer) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6213,7 +6406,7 @@ class EeFabMaterial extends Shared(EeFab) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
         button:focus, button:active {
           outline:0 ;
         }
@@ -6293,7 +6486,7 @@ class EeFadeInMaterial extends Shared(EeFadeIn) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6305,7 +6498,7 @@ class EeHeaderMaterial extends Shared(EeHeader) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6317,7 +6510,7 @@ class EeNavBarMaterial extends Shared(EeNavBar) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6329,7 +6522,7 @@ class EeNetworkMaterial extends Shared(EeNetwork) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6341,7 +6534,7 @@ class EeRowMaterial extends Shared(EeRow) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
         :host {
           display: flex;
         }
@@ -6356,7 +6549,7 @@ class EeSnackBarMaterial extends Shared(EeSnackBar) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6368,7 +6561,7 @@ class EeTableMaterial extends Shared(EeTable) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -6380,7 +6573,7 @@ class EeTabsMaterial extends Shared(EeTabs) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
         :host {
           --ee-tabs-selected-color: var(--mat-primary-color);
           --ee-tabs-active-color: var(--mat-primary-color);
@@ -6455,7 +6648,7 @@ class EeToolbarMaterial extends Shared(EeToolbar) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
         :host {
           display: flex;
         }
@@ -6470,7 +6663,7 @@ class EnFormMaterial extends Shared(EnForm) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
         :invalid {
           border: unset;
           border-bottom: var(--mat-input-border, var(--mat-theme-border));
@@ -6514,7 +6707,7 @@ class EnInputRangeMaterial extends Shared(EnInputRange) {
       super.styles,
       super.stylePatterns.inputField,
       super.stylePatterns.errorMessage,
-      r$5`
+      r`
         ::slotted(#range-amount) {}
       `
     ]
@@ -6528,7 +6721,7 @@ class NnButtonMaterial extends Shared(NnButton) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
         :host {
           display: block;
           width: max-content;
@@ -6655,7 +6848,7 @@ class NnInputButtonMaterial extends Shared(NnInputButton) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
         :host {
           display: inline-block;
           width: fit-content;
@@ -6736,48 +6929,14 @@ class NnInputButtonMaterial extends Shared(NnInputButton) {
       `
     ]
   }
+
+  constructor () {
+    super();
+    this.inputType = 'button';
+  }
 }
 
 tpeRegistry.register('nn-input-button', NnInputButtonMaterial);
-
-const AddHasValueAttributeMixin = (base) => {
-  return class Base extends base {
-    _observeInput (e) {
-      const target = e.currentTarget;
-      this.toggleAttribute('has-value', __hasValue(target.value));
-    }
-
-    _observeFocus (e) {
-      this.toggleAttribute('has-focus', true);
-    }
-
-    _observeBlur (e) {
-      this.toggleAttribute('has-focus', false);
-    }
-
-    afterSettingProperty (prop, newValue) {
-      super.afterSettingProperty();
-
-      if (prop === 'value') {
-        this.toggleAttribute('has-value', __hasValue(newValue));
-      }
-    }
-
-    firstUpdated () {
-      super.firstUpdated();
-
-      this.native.addEventListener('input', this._observeInput.bind(this));
-      this.native.addEventListener('focus', this._observeFocus.bind(this));
-      this.native.addEventListener('blur', this._observeBlur.bind(this));
-
-      this.toggleAttribute('has-value', __hasValue(this.value));
-    }
-  }
-};
-
-function __hasValue (v) {
-  return v !== 'undefined' && v !== 'null' && v !== ''
-}
 
 class NnInputTextMaterial extends Shared(AddHasValueAttributeMixin(NnInputText)) {
   // Style depends on CSS being able to find label as sibling of the #native element.
@@ -6814,7 +6973,7 @@ class NnInputTextMaterial extends Shared(AddHasValueAttributeMixin(NnInputText))
       super.stylePatterns.focusStyle,
       super.stylePatterns.errorMessage,
       super.stylePatterns.requiredLabelAsterisk,
-      r$5`
+      r`
         #native[has-leading] {
           padding-left: 36px;
         }
@@ -6860,7 +7019,7 @@ tpeRegistry.register('nn-input-color', NnInputColorMaterial);
 class NnInputDateMaterial extends Shared(NnInputTextMaterial) {
   constructor () {
     super();
-    this.inputType = 'data';
+    this.inputType = 'date';
   }
 }
 
@@ -6879,9 +7038,14 @@ class NnInputEmailMaterial extends Shared(NnInputTextMaterial) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
+  }
+
+  constructor () {
+    super();
+    this.inputType = 'email';
   }
 }
 
@@ -6891,7 +7055,7 @@ class NnInputFileMaterial extends Shared(NnInputFile) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
         :host {
           display: block;
           min-width: 130px;
@@ -6928,12 +7092,12 @@ class NnInputFileMaterial extends Shared(NnInputFile) {
   }
 
   render () {
-    return y$1`
+    return y`
       <nn-button @click=${this._chooseFile}>${this.buttonLabel}</nn-button>
       <input type="file" id="native" @change="${this.fileNameChanged}" ?hidden=${this.hideNative} title=${this.title} >
       ${this.ifValidationMessageAfter}
       ${this.fileName
-      ? this.lit.html`
+      ? y`
           <div id="filename" title="${this.title}">${this.fileName}</div>
         `
       : ''
@@ -6953,27 +7117,31 @@ class NnInputMonthMaterial extends Shared(NnInputTextMaterial) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
+  }
+
+  constructor () {
+    super();
+    this.inputType = 'month';
   }
 }
 
 tpeRegistry.register('nn-input-month', NnInputMonthMaterial);
 
 class NnInputNumberMaterial extends Shared(NnInputTextMaterial) {
+  static get styles () {
+    return [
+      super.styles,
+      r`
+      `
+    ]
+  }
+
   constructor () {
     super();
     this.inputType = 'number';
-  }
-  
-  static get styles () {
-    console.log(super.styles);
-    return [
-      super.styles,
-      r$5`
-      `
-    ]
   }
 }
 
@@ -6983,9 +7151,14 @@ class NnInputPasswordMaterial extends Shared(NnInputTextMaterial) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
+  }
+
+  constructor () {
+    super();
+    this.inputType = 'password';
   }
 }
 
@@ -7019,7 +7192,7 @@ class NnInputRadioMaterial extends Shared(NnInputRadio) {
       super.stylePatterns.errorMessage,
       super.stylePatterns.hideNativeWidget,
       super.stylePatterns.requiredLabelAsterisk,
-      r$5`
+      r`
       :host {
         display: inline-block;
         position: relative;
@@ -7253,7 +7426,7 @@ class NnInputRangeMaterial extends Shared(NnInputRange) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -7265,9 +7438,14 @@ class NnInputSearchMaterial extends Shared(NnInputTextMaterial) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
+  }
+
+  constructor () {
+    super();
+    this.inputType = 'search';
   }
 }
 
@@ -7278,9 +7456,14 @@ class NnInputSubmitMaterial extends Shared(NnInputSubmit) {
     return [
       super.styles,
       NnInputButtonMaterial.styles,
-      r$5`
+      r`
       `
     ]
+  }
+
+  constructor () {
+    super();
+    this.inputType = 'submit';
   }
 }
 
@@ -7290,9 +7473,14 @@ class NnInputTelMaterial extends Shared(NnInputTextMaterial) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
+  }
+
+  constructor () {
+    super();
+    this.inputType = 'tel';
   }
 }
 
@@ -7302,9 +7490,14 @@ class NnInputTimeMaterial extends Shared(NnInputTextMaterial) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
+  }
+
+  constructor () {
+    super();
+    this.inputType = 'time';
   }
 }
 
@@ -7314,9 +7507,14 @@ class NnInputUrlMaterial extends Shared(NnInputTextMaterial) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
+  }
+
+  constructor () {
+    super();
+    this.inputType = 'url';
   }
 }
 
@@ -7326,9 +7524,14 @@ class NnInputWeekMaterial extends Shared(NnInputTextMaterial) {
     static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
+  }
+
+  constructor () {
+    super();
+    this.inputType = 'week';
   }
 }
 
@@ -7338,7 +7541,7 @@ class NnMeterMaterial extends Shared(NnMeter) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -7350,7 +7553,7 @@ class NnProgressMaterial extends Shared(NnProgress) {
   static get styles () {
     return [
       super.styles,
-      r$5`
+      r`
       `
     ]
   }
@@ -7387,7 +7590,7 @@ class NnSelectMaterial extends Shared(AddHasValueAttributeMixin(NnSelect)) {
       super.stylePatterns.fixedLabel,
       super.stylePatterns.errorMessage,
       super.stylePatterns.requiredLabelAsterisk,
-      r$5`
+      r`
         :host::after {
           position: absolute;
           content: '';
@@ -7434,7 +7637,7 @@ class NnTextareaMaterial extends Shared(AddHasValueAttributeMixin(NnTextarea)) {
       super.stylePatterns.floatingLabel,
       super.stylePatterns.errorMessage,
       super.stylePatterns.requiredLabelAsterisk,
-      r$5`
+      r`
         :host {
           --mat-form-element-height: 80px;
         }
