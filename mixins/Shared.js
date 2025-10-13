@@ -245,8 +245,10 @@ export const Shared = (base) => {
             line-height: 0;
           }
 
+          :host(:not([disabled])[invalid]) span.error-message,
           :host(:not([disabled])) #native:invalid ~ span.error-message {
             opacity: 1;
+            line-height: normal;
           }
         `,
         // Auxiliary style that will hide the native element, for cases in which
